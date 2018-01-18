@@ -1,0 +1,29 @@
+{
+  "name": "pdm",
+  "version": "1.0.0",
+  "description": "PDM Sys",
+  "main": "./server/main.js",
+  "dependencies": {
+    "kcors": "^2.2.1",
+    "koa": "^2.4.1",
+    "koa-bodyparser": "^4.2.0",
+    "koa-router": "^7.3.0",
+    "koa-static": "^4.0.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "pm2 start ./server/main.js --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/huoxiangdong/pdm.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/huoxiangdong/pdm/issues"
+  },
+  "homepage": "https://github.com/huoxiangdong/pdm#readme"
+}
