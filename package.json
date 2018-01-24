@@ -2,22 +2,34 @@
   "name": "pdm",
   "version": "1.0.0",
   "description": "PDM Sys",
-  "main": "./server/main.js",
+  "main": "",
   "dependencies": {
+    "jsonwebtoken": "^8.1.0",
     "kcors": "^2.2.1",
     "koa": "^2.4.1",
     "koa-bodyparser": "^4.2.0",
     "koa-router": "^7.3.0",
-    "koa-static": "^4.0.2"
+    "koa-static": "^4.0.2",
+    "mysql": "^2.15.0",
+    "nodemon": "^1.14.11",
+    "shelljs": "^0.8.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1"
+  },
   "scripts": {
-    "start": "pm2 start ./server/main.js --watch",
+    "init": "nodemon --exec babel-node -- server/database/init.js",
+    "server": "pm2 start babel.js --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/huoxiangdong/pdm.git"
+  },
+  "engines": {
+    "node": ">= v9.3.0",
+    "npm": ">= 5.6.0"
   },
   "keywords": [],
   "author": "",
