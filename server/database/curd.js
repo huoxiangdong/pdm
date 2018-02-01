@@ -8,6 +8,7 @@ let db = {
     PROT: '3306',
     HOST: 'localhost'
 }
+
 // 创建连接池
 const pool = mysql.createPool({
     //connectionLimit : 10, // 连接时长
@@ -17,6 +18,35 @@ const pool = mysql.createPool({
     database: db.DATABASE
 })
 
+// 增
+let insertData = (table, values) => {
+    let _sql = 'INSERT INTO ?? SET ?'
+    return query(_sql, [table, values])
+}
+
+// 删除
+// let deleteDataById = (table, id) => {
+//   let _sql = 'DELETE FROM ?? WHERE id = ?'
+//   return query(_sql, [table, id])
+// }
+
+// let select = (table, keys) => {
+//   let _sql = 'SELECT ?? FROM ?? '
+//   return query(_sql, [keys, table])
+// }
+
+// let count = (table) => {
+//   let _sql = 'SELECT COUNT(*) AS total_count FROM ?? '
+//   return query(_sql, [table])
+// }
+
+// 改
+// let updateData = (table, values, id) => {
+//   let _sql = 'UPDATE ?? SET ? WHERE id = ?'
+//   return query(_sql, [table, values, id])
+// }
+
+// 查
 let query = (sql, values) => {
     return new Promise((resolve, reject) => {
         pool.getConnection((err, connection) => {
@@ -29,11 +59,9 @@ let query = (sql, values) => {
                     } else {
                         resolve(results)
                     }
-
                     connection.release() // 释放连接
                 }) // 连接查询
             }
-
         }) // pool
     }) // promise
 } // query
@@ -63,6 +91,7 @@ const user = {
         return result
     }
 }
+
 /* let createTable = sql => {
     return query(sql,[])
 } */
@@ -79,40 +108,8 @@ const user = {
 //   return query(_sql, [keys, table, start, end])
 // }
 
-// 插入
-let insertData = (table, values) => {
-    let _sql = 'INSERT INTO ?? SET ?'
-    return query(_sql, [table, values]) 
-}
-
-// 更新
-// let updateData = (table, values, id) => {
-//   let _sql = 'UPDATE ?? SET ? WHERE id = ?'
-//   return query(_sql, [table, values, id])
-// }
-
-// 删除
-// let deleteDataById = (table, id) => {
-//   let _sql = 'DELETE FROM ?? WHERE id = ?'
-//   return query(_sql, [table, id])
-// }
-
-// let select = (table, keys) => {
-//   let _sql = 'SELECT ?? FROM ?? '
-//   return query(_sql, [keys, table])
-// }
-
-// let count = (table) => {
-//   let _sql = 'SELECT COUNT(*) AS total_count FROM ?? '
-//   return query(_sql, [table])
-// }
-
-
-
-
 module.exports = {
     query,
     user
-
     //createTable
 }

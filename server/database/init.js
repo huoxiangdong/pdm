@@ -1,3 +1,5 @@
+// 数据库初始化
+
 // 创建数据库
 import fs from 'fs'
 import path from 'path'

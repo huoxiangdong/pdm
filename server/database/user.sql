@@ -1,3 +1,4 @@
+# 创建user表
 CREATE TABLE IF NOT EXISTS `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT, # 用户ID
   `password` varchar(255) DEFAULT NULL, # 密码
