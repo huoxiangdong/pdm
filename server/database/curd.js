@@ -1,6 +1,6 @@
 import mysql from 'mysql' // MYSQL 驱动
 
-// mysql配置
+// mysql登录配置
 let db = {
     DATABASE: 'PDM_SYS',
     USERNAME: 'root',
@@ -24,7 +24,7 @@ let insertData = (table, values) => {
     return query(_sql, [table, values])
 }
 
-// 删除
+// 删
 // let deleteDataById = (table, id) => {
 //   let _sql = 'DELETE FROM ?? WHERE id = ?'
 //   return query(_sql, [table, id])
@@ -66,7 +66,7 @@ let query = (sql, values) => {
     }) // promise
 } // query
 
-// id处理
+// 账号处理
 const user = {
     /**
      * 创建用户
@@ -91,7 +91,31 @@ const user = {
         return result
     }
 }
-
+// 物料处理
+const material = {
+    /**
+     * 创建用户
+     * @param {object} data 用户数据
+     */
+    async create(data) {
+        let result = await insertData('material', data)
+        return result
+    },
+    /**
+     * 查找用户
+     * @param {object} options 查找条件参数
+     */
+    async findOne(options) {
+        let sql = `SELECT * FROM material WHERE MaterialNumber="${options.MaterialNumber}" limit 1`
+        let result = await query(sql)
+        if (Array.isArray(result) && result.length > 0) {
+            result = result[0]
+        } else {
+            result = null
+        }
+        return result
+    }
+}
 /* let createTable = sql => {
     return query(sql,[])
 } */
@@ -108,8 +132,9 @@ const user = {
 //   return query(_sql, [keys, table, start, end])
 // }
 
+// 模块导出
 module.exports = {
     query,
-    user
-    //createTable
+    user,
+    material
 }
