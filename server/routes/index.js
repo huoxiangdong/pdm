@@ -170,7 +170,7 @@ const queryMaterial = async (ctx) => {
         })
         .then(val => {
             if (!val) {
-                result.message = '物料不存在'
+                result.message = '物料不存在,请确认输入是否正确'
                 ctx.body = result
             } else if (val) {
                 result.success = true
