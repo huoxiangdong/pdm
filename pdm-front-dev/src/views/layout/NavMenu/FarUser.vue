@@ -7,9 +7,9 @@
       router-link(v-show="!user.name" to="/auth/login") 登录
       // 个人中心
       el-dropdown(@command="loginOut" placement='bottom-end')
-        span(v-show="user.name") {{user.name}}
-          img(src="https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png")
-          //i(class="el-icon-caret-bottom el-icon--right")
+        span(v-show="user.name" v-text="user.name") 
+        img(src="https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png")
+        //i(class="el-icon-caret-bottom el-icon--right")
         // 下拉菜单
         el-dropdown-menu(slot="dropdown")
           el-dropdown-item 
@@ -45,7 +45,8 @@ export default {
     }
   },
   beforeCreate() {
-    // 第二次拦截 当主页刷新时，如果服务端设置的token的时效到了的话，便会提示未登录
+    // 第二次拦截 当主页刷新时，如果服务端设置的token的时效到了的话，便会提示未登录 
+    
     if (this.$rest) {  // this.$rest 只读
       this.$rest.submit
         .token() // 验证 token
@@ -74,13 +75,16 @@ export default {
 <style lang="stylus" scoped>
 #user 
   padding-top: 21px
-  padding-left: 10px 
+  padding-left: 15px 
   padding-right: 10px
   border-right: solid 0px #e6e6e6; 
 // 用户头像
-.el-dropdown > span > img 
+.el-dropdown > span 
+  position: fixed
+.el-dropdown > img 
   width: 20px
   height: 20px
+  margin-left: 50px
   margin-bottom: 6px;
 /* .el-dropdown-menu__item
   color: #000

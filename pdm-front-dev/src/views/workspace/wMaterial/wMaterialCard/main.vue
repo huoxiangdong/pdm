@@ -28,6 +28,7 @@ div
 <script>
 //import wInput from "./wInput";
 import { mapState, mapActions } from "vuex";
+import { stringify } from 'querystring';
 var obj = {}
 const INPUT_ITEM = {
   component: {}
@@ -107,6 +108,11 @@ export default {
         );
       }
     },
+    queryData() { // 查询条件 一般第一栏为关键字
+        let obj = {}
+        obj[Object.keys(this.observerValue)[0]] = Object.values(this.observerValue)[0]
+        return obj
+    },
     // input渲染
     renderInputs() {
       let { baseData, inputSchema: schema } = this;
@@ -156,42 +162,32 @@ export default {
   methods: {
     ...mapActions(["getNavTwoIndex","getObserverValues"]),
     // input数据保存提交
-    saveForm() {
+    addMaterialData() {
       if (this.$rest) {
         this.$rest.submit
-          .addMaterial(this.observerValue)
+          .addMaterialData(this.observerValue)
           .then(res => {
             if (!res.success) {
-              console.log(JSON.stringify(res, null, 2));
-              this.$message.error(res.message);
-            } else if (res.data !== null && res.data.errno) {
               console.log(JSON.stringify(res, null, 2));
               const h = this.$createElement;
               this.$message({
                 showClose: true,
                 type: "error",
                 message: h("div", null, [
-                  h("p", null, res.data.sqlMessage),
-                  h("p", { style: "margin-top:3px" }, res.data.sql)
+                  h("p", null, JSON.stringify(res.data.errors,null,2)),
+                  //h("p", { style: "margin-top:3px" }, res.data.errors[0].validatorKey)
                 ])
               });
-            } else {
-              this.$message.warning(res.message);
-            }
-          })
-          .catch(err => {
-            this.$message.error(`${err.message}`);
-          }); // 提交请求响应过程
-      } else {
+            }else { this.$message.success(res.message) }
+          }).catch(err => { this.$message.error(`${err.message}`) }); // 提交请求响应过程
+      }else {
         this.$message.error("你真厉害，被你发现了😝");
-        return false;
-      }
-    },
-    // 查询input数据
-    queryInputData() {
+        return false; }
+   },
+    queryMaterialData() {  // 查询input数据
       if (this.$rest) {
         this.$rest.submit
-          .queryMaterial(this.observerValue) // 提交
+          .queryMaterialData(this.queryData) // 提交
           .then(res => {
             if (!res.success) {
               this.$message.error(res.message);
@@ -208,8 +204,64 @@ export default {
         return false;
       }
     },
+    updateMaterialData() { // 更新数据
+     if (this.$rest) {
+        this.$rest.submit
+          .updateMaterialData(this.observerValue)
+          .then(res => {
+            if (!res.success) {
+              console.log(JSON.stringify(res, null, 2));
+              this.$message.error(res.message);
+            } else if (res.data !== null && res.data.errno) { // res.data.errno 为mysql报错
+              console.log(JSON.stringify(res, null, 2));
+              // message
+              const h = this.$createElement;
+              this.$message({
+                showClose: true,
+                type: "error",
+                message: h("div", null, [
+                  h("p", null, res.data.sqlMessage),
+                  h("p", { style: "margin-top:3px" }, res.data.sql)
+                ])
+              });
+
+            } else {
+              this.$message.warning(res.message);
+            }
+          })
+          .catch(err => {
+            this.$message.error(`${err.message}`);
+          }); // 提交请求响应过程出错
+      } else {
+        this.$message.error("你真厉害，被你发现了😝");
+        return false;
+      }
+    },
+    // 删
+    deleteMaterialData() {
+       if (this.$rest) {
+        this.$rest.submit
+          .deleteMaterialData(this.queryData) // 提交
+          .then(res => {
+            if (!res.success) {
+              this.$message.error(res.message);
+            } else {
+              let username = localStorage.getItem("username")
+              this.observerValue = { Creator: username }
+              this.$message.success(res.message);
+            }
+          })
+          .catch(err => {
+            this.$message.error(`${err.message}`);
+          });
+      } else {
+        this.$message.error("😝 我也不晓得咋办了");
+        return false;
+      }
+
+    },
     // 初始菜单状态
-    initNavSate(val, oldVal) {
+    initNavState(val, oldVal) {
       this.getNavTwoIndex(~~0);
       console.log("new: %s, old: %s", val, oldVal);
     },
@@ -232,7 +284,8 @@ export default {
     navTwoIndex: function(val, oldVal) {
       switch (val) {
         case 1:
-       
+        
+       console.log(this.queryData)
          /* Object.keys(this.baseData).map(data => {
            obj[data] = val
          }) */
@@ -248,20 +301,33 @@ export default {
             `当前input内数据:\n`,
             JSON.stringify(this.observerValue, null, 2)
           );
-          this.initNavSate(val, oldVal);
+          this.initNavState(val, oldVal);
           break;
         case 2: // 新增
           this.observerValue = this.initInputData;
-          this.initNavSate(val, oldVal);
+          this.initNavState(val, oldVal);
           break;
         case 3: // 保存
-          this.saveForm();
-          this.initNavSate(val, oldVal);
+          this.addMaterialData();
+          this.initNavState(val, oldVal);
           break;
         case 4: // 查询
-          this.queryInputData();
-          this.initNavSate(val, oldVal);
+          this.queryMaterialData();
+          this.initNavState(val, oldVal);
+          break;
+        case 5: // 更新
+          console.log('更新')
+          this.updateMaterialData();
+          this.initNavState(val, oldVal);
+          break;
+        case 6: 
+          this.deleteMaterialData()
+         
+          this.initNavState(val, oldVal);
       }
+    },
+    observerValue:function(val,oldVal) {
+      //console.log(val,oldVal)
     }
   }
 };

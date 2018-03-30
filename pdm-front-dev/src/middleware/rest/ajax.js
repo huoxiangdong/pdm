@@ -97,8 +97,9 @@ class ajax {
   setSuccess(success) {
     this.success = success
   }
-  // ?
+  // 格式化get请求参数 or 使用qs
   parse(path, id) {
+   
     if (typeof id === 'string') {
       return path + '/' + id
     }
@@ -187,19 +188,17 @@ class ajax {
   }
 
   // 查
-  query(path, config1 = {
-    cache: false
-  }) {
-
-    if (!this.queryMap[path]) { // cache path closure
+  query(path, config1 = { cache: false } ) {
+    if (!this.queryMap[path]) { // cache path closure queryMap内不存在path
       let url = ''
       this.queryMap[path] = (id, expand, config2 = {}) => {
-        // 合并config
-        let config = Object.assign({}, config1, config2)
-        // 关闭缓存
+        let config = Object.assign({}, config1, config2) // 合并config
         if (!config.cache) {
           let headers = config.headers = config.headers || {}
-          headers['Cache-Control'] = 'no-cahce'
+          headers['Cache-Control'] = 'no-cahce' // 加入头部信息
+          // If-Modified-Since是标准的HTTP请求头标签，在发送HTTP请求时，把浏览器端缓存页面的最后修改时间一起发到服务器去，服务器会把这个时间与服务器上实际文件的最后修改时间进行比较。
+          //如果时间一致，那么返回HTTP状态码304（不返回文件内容），客户端接到之后，就直接把本地缓存文件显示到浏览器中。
+          //如果时间不一致，就返回HTTP状态码200和新的文件内容，客户端接到之后，会丢弃旧文件，把新文件缓存起来，并显示到浏览器中
           headers['If-Modified-Since'] = '0'
         }
         if (expand) {
@@ -212,9 +211,10 @@ class ajax {
           newPath = this.parse(url, id)
         }
         let baseUrl = config.baseUrl || this.baseUrl
-
+        console.log(baseUrl + newPath, config)
+        // 执行
         return this.$http.get(baseUrl + newPath, config).then((res) => {
-
+          
           return res.data
         }, (res) => {
           return res

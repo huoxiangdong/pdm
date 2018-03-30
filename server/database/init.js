@@ -7,6 +7,9 @@ import path from 'path'
 import curd from './curd'
 
 const sqlfile = 'material.sql'
+//const sqlfile = 'user.sql'
+//const sqlfile = 'timezone_leaps.sql'
+//const sqlfile = 'timezone_leaps.sql'
 // 获取sql创建表配置
 const sql = path.join(__dirname, sqlfile)
 // 读取 user.sql

@@ -42,7 +42,7 @@ const routes = [ { // 验证
   component: FarHome,
 // 路由元信息
 meta: {
-requireAuth: true, // 添加该字段表示该路由需要登录
+requireAuth: true, // 添加该字段表示该路由需要登录,路由验证
 //skipAuth: true //略过验证
    
 },
@@ -117,11 +117,9 @@ router.beforeEach((to, from, next) => {
     next(false)
   } else if (to.meta.requireAuth) { // 如果访问的路由设置了 meta.requireAuth
     let token = localStorage.getItem('token')
-    if (to.meta.requireAuth) { // 如果访问的路由设置了 meta.requireAuth
       console.log('全局拦截')
-      if (token) { // 如果有token继续
-        next()
-      } else {
+      if (token) {  next() } 
+      else {
         next({
           path: '/',
           query: {
@@ -129,7 +127,6 @@ router.beforeEach((to, from, next) => {
           }
         })
       }
-    }
   } else {
     next()
   }
