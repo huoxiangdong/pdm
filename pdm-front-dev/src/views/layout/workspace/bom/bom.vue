@@ -5,7 +5,8 @@
     :columns-handler="columnsHandler"
     @selection-change="selectionChange"
     column-type="selection"
-el-card(:style="card_style" :body-style="bodyStyle" )
+    
+el-card(id="bom" :style="card_style" :body-style="bodyStyle" )
   div(slot="header" class="clearfix")
     span 产品名称: APEX-XXX
     el-button(type="text" style="float: right; padding: 1px 0;" @click="dialogVisible = true")
@@ -34,18 +35,27 @@ el-card(:style="card_style" :body-style="bodyStyle" )
         :columns-props="columnsProps"
         @cell-dblclick="cell_dblclick"
         )
-    egrid(
-      border
-      stripe
-      size="small"
-      :header-cell-style="material_headerStyle"
-      :cell-style="material_cellStyle"
-      :style="material_style"
-      :data="key"
-      :columns="material_columns"
-      @cell-dblclick="cell_dblclick"
+    div(style="display:grid;grid-template-columns:1fr 1fr")
+      egrid(
+        style="width:140px;height:28px;justify-self: right;"
+        :data="half"
+        :columns="halfCol"
+        :show-header="false"
+        :cell-style="half_cellStyle"
       )
-    el-input(
+      egrid(
+        border
+        stripe
+        size="small"
+        :header-cell-style="material_headerStyle"
+        :cell-style="material_cellStyle"
+        :style="material_style"
+        :data="key"
+        :columns="material_columns"
+        :columns-props="columnsProps"
+        @cell-dblclick="cell_dblclick"
+        )
+    //el-input(
       style="width:100px;border-radius:0px"
       readonly 
       size="mini") 
@@ -56,15 +66,27 @@ el-card(:style="card_style" :body-style="bodyStyle" )
 import Vue from "vue";
 import Data from "./data";
 import Layer from "./layer";
+import Editor from './cell-editor'
 //import wBtn from "./btn";
 //import wLayerTable from './layer-table'
-
+import { mapActions } from 'vuex'
 export default {
   data() {
     return {
+      half:[{ tag:"APEX-XX01"}],
+      halfCol:[{label:'half',prop:"tag"}],
+      half_cellStyle:{
+        height:`27px`,
+        background: `#FF5000`,
+        color: `#fff`,
+        //padding: `0px 10px`,
+        border: `1px solid #ebeef5`,
+        'font-size':`13px`
+
+      },
       columnsProps: {
         // 定义表格列如何渲染
-        component: Vue.extend({
+       /*  component: Vue.extend({
           props: ["row", "column"],
           render(h) {
             return h("el-input", {
@@ -75,7 +97,8 @@ export default {
               }
             });
           }
-        })
+        }) */
+        component: Editor,
       },
       dialogVisible: false,
       Layer: Layer,
@@ -91,23 +114,25 @@ export default {
       material_headerStyle: {
         background: `#737373`,
         color: `#fff`,
-        padding: `1px 0`
+        padding: `1px 10px`
         //border: `1px solid #ebeef5`
       },
       material_cellStyle: {
         //background: `#f2f2f2`,
         color: "#000",
-        padding: `1px 0`
+        padding: `1px 0px`
       },
       main_headerStyle: {
+        //'text-align': `center`,
         background: `#666666`,
         color: `#fff`,
-        padding: `1px 0`
+        padding: `1px 10px`
 
         //border: `1px solid #ebeef5`
       },
       main_cellStyle: {
-        background: `#e6e6e6`,
+        //background: `#e6e6e6`,
+        background: `#fff`,
         padding: `1px 0`,
         color: "#000"
       }
@@ -174,6 +199,7 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['isReadOnly']),
     handleClose(e) {
       const tr = this.$el.querySelector("tbody").children;
       const rows = [].filter.call(tr, row => row);
@@ -187,8 +213,11 @@ export default {
     cellStyle({ row, column, rowIndex, columnIndex }) {
       return "color:#000";
     },
-    cell_dblclick(row, column, cell, event) {
-      console.log(column)
+    cell_dblclick(row, column, cell, event) { // cell双击
+      //this.isReadOnly()
+      //event.target.hidden = true
+      event.target.readOnly = !event.target.readOnly
+      console.log( column)
       //console.log(row[column.property] == event.target.innerText)
      /*  column.renderCell = function(h, data) {
         console.log(data);
@@ -245,29 +274,23 @@ export default {
 };
 </script>
 
-  <style lang='stylus'>
-  .el-card__header {
-    background-color: #999999;
-    padding: 10px 20px;
-  }
+<style lang='stylus'>
+ #bom > .el-card__header 
+    background-color: #999999!important
+    padding: 10px 20px!important
 
-  .el-button--text {
-    color: #000;
-  }
+.el-table--border th:first-child .cell, .el-table--border td:first-child .cell 
+   padding-left: 0px
 
-  .el-button--text:active {
-    color: #000;
-  }
-
-  // 滚动
-  .el-carousel__item.is-active {
-    overflow-y: auto;
-    overflow-x: hidden;
-  }
-
-  .el-input__inner {
-    border-radius: 0px;
-    border: 0px solid #dcdfe6;
-  }
+.el-table .cell
+    //padding-left: 0px
+    padding-right: 0px
+    
+.el-table tr > td 
+    padding: 0px 0px!important
+// 滚动
+.el-carousel__item.is-active 
+    overflow-y: auto
+    overflow-x: hidden
 </style>
   

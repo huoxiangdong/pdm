@@ -43,6 +43,9 @@ export const mutations = {
   [types.OBSERVERVALUES](state,value) {
     console.log(value)
     state.observerValues = value
+  },
+  [types.ISREADONLY](state) {
+    state.readonly = !state.readonly
   }
 }
 

@@ -13,7 +13,8 @@ const state = {
   navIndex:'',
   sideBarIndex: '',
   navTwoIndex: '',
-  observerValues:'' // 基础物料提交数据
+  observerValues:'', // 基础物料提交数据
+  readonly: true
 }
 
 export default new Vuex.Store({

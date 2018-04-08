@@ -9,7 +9,6 @@ const actions = {
 
   isCollapse({ commit }) { commit(types.ISCOLLAPSE) }, // sidebar折叠
 
-
   openAddLayer({ commit }) { commit(types.OPENADDLAYER) },
 
   getSideBarIndex({ commit }, index) { commit(types.SIDEBARINDEX,index) }, // 获取sidebar菜单
@@ -18,7 +17,9 @@ const actions = {
 
   getNavTwoIndex( { commit }, index) { commit(types.NAVTWOINDEX, index) }, // 修改工作区菜单index
 
-  getObserverValues( { commit }, value) { commit(types.OBSERVERVALUES, value) }
+  getObserverValues( { commit }, value) { commit(types.OBSERVERVALUES, value) },
+
+  isReadOnly( { commit }) { commit(types.ISREADONLY) }
 }
 
 export default actions
