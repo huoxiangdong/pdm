@@ -13,9 +13,9 @@
         side-bar
         //side-bar(v-on:setActiveItem="setActiveItem")
       el-main
-        //w-navone
-        w-navtwo
+        nav-two
         router-view
+        
         //WorkSpace(ref="carousel")
     // 底
     //el-footer

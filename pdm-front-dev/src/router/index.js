@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 // 加载组件
-import FarHome from '@/views/FarHome'
+import home from '@/views/home'
 //import Register from '@/views/Register'
 //import Login from '@/views/Login'
 // test
@@ -39,7 +39,7 @@ Vue.use(Router)
 
 const routes = [ { // 验证
   path: '/',
-  component: FarHome,
+  component: home,
 // 路由元信息
 meta: {
 requireAuth: true, // 添加该字段表示该路由需要登录,路由验证
@@ -49,42 +49,47 @@ requireAuth: true, // 添加该字段表示该路由需要登录,路由验证
   children: [{
     path: '/WorkSpace',
     component: resolve =>
-      import ('@/views/layout/FarWorkSpace').then(resolve),
+      import ('@/views/layout/workspace/workspace').then(resolve),
     children: [{
       name: 'Design',
       path: 'Design',
       component: resolve =>
-        import ('@/views/workspace/w-draw').then(resolve)
+        import ('@/views/layout/workspace/draw/draw').then(resolve)
+    },{
+      name: 'Bom',
+      path: 'Bom',
+      component: resolve =>
+        import ('@/views/layout/workspace/bom/bom').then(resolve)
     }, {
       name: 'MaterialBill',
       path: 'MaterialBill',
       component: resolve =>
-        import ('@/views/workspace/wMaterial/wMaterialBill').then(resolve)
+        import ('@/views/layout/workspace/material/material-bill').then(resolve)
     },{
       name: 'Material',
       path: 'Material',
       component: resolve =>
-        import ('@/views/workspace/wMaterial/wMaterial').then(resolve)
+        import ('@/views/layout/workspace/material/material').then(resolve)
     },{
       name: 'ProcessCard',
       path: 'ProcessCard',
       component: resolve =>
-        import ('@/views/workspace/wMaterial/wProcessCard').then(resolve)
+        import ('@/views/layout/workspace/material/process-card').then(resolve)
     }]
 
   }]
 }, { // 验证
   path: '/auth',
   component: resolve =>
-    import ('@/views/auth/far-authview').then(resolve),
+    import ('@/views/auth/auth').then(resolve),
   children: [{
     path: 'login',
     component: resolve =>
-      import ('@/views/auth/far-login').then(resolve)
+      import ('@/views/auth/login').then(resolve)
   }, {
     path: 'register',
     component: resolve =>
-      import ('@/views/auth/far-register').then(resolve)
+      import ('@/views/auth/register').then(resolve)
   }]
 }, ]
 

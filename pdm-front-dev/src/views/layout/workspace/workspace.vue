@@ -9,8 +9,9 @@
     )
     el-carousel-item
       router-view
-    el-carousel-item
-      w-table
+      
+    //el-carousel-item
+      table
     //el-carousel-item
       wMainBomTable
       

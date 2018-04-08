@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store from './store/index'
-process.env.TZ = 'Asia/Shanghai';
+
 // 全局组件
 import './views'
 //  iviews
@@ -32,7 +32,7 @@ Vue.config.productionTip = false
 
 Vue.use(Element)
 /* eslint-disable no-new */
-var v = new Vue({
+var app = new Vue({
   el: '#app',
   router,
   store,

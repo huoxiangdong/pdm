@@ -19,7 +19,7 @@
 
 <script>
 import { mapState,mapActions } from 'vuex'
-import Data from './SideBarTitle'
+import Data from './titles'
 export default {
   data() {
      return { // 静态数据
@@ -41,9 +41,9 @@ export default {
       if (navIndex == 0) {
          return Data.default
       }else if(navIndex == 1) {
-        return Data.designTitle
+        return Data.design
       }else if(navIndex == 2) {
-        return  Data.materialTitle
+        return  Data.material
       }
     }
   },

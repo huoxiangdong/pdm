@@ -60,10 +60,10 @@ w-Card(
 //import qs from "qs"
 import Vue from "vue";
 import { mapState, mapActions } from "vuex";
-import Data from "./wMaterialCard/MaterialData";
-import inputSchemaData from './SchemaData'
+import Data from "./material-card/data";
+import Schema from './schema'
 export default {
-  mixins: [inputSchemaData],
+  mixins: [Schema],
   data() {
     return {
       materialData: Data.data,

@@ -2,16 +2,16 @@ export default {
   //designTitle:['BOM','电缆设计'],
   //materialTitle: ['物料清单','基础物料'],
   //test: ['fuck','fuck'],
-  designTitle: [{
+  design: [{
       title: "BOM",
-      index: "/WorkSpace/Design"
+      index: "/WorkSpace/Bom"
     },
     {
       title: "电缆设计",
       index: "/WorkSpace/Design"
     }
   ],
-  materialTitle: [{
+  material: [{
     title: "基础物料",
     index: "/WorkSpace/Material"
   },

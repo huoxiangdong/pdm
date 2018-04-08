@@ -8,19 +8,19 @@
       // 个人中心
       el-dropdown(@command="loginOut" placement='bottom-end')
         span(v-show="user.name" v-text="user.name") 
-        img(src="https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png")
+        i(style="float: right; margin:2px 5px;" class="iconfont icon-tianjia1")
         //i(class="el-icon-caret-bottom el-icon--right")
         // 下拉菜单
         el-dropdown-menu(slot="dropdown")
           el-dropdown-item 
             | <i class="iconfont icon-dengluzhanghao"></i>
-            | 个人中心
+            |   个人中心
           el-dropdown-item 
             i(class="iconfont icon-shezhi") 
-            span &nbsp&nbsp设置 
+            |   设置 
           el-dropdown-item(command)
             i(class="iconfont icon-tuichu") 
-            span &nbsp&nbsp退出登录
+            |   退出登录
 </template>
 
 <script>
@@ -78,15 +78,5 @@ export default {
   padding-left: 15px 
   padding-right: 10px
   border-right: solid 0px #e6e6e6; 
-// 用户头像
-.el-dropdown > span 
-  position: fixed
-.el-dropdown > img 
-  width: 20px
-  height: 20px
-  margin-left: 50px
-  margin-bottom: 6px;
-/* .el-dropdown-menu__item
-  color: #000
-  font-size:10px */
+
 </style>

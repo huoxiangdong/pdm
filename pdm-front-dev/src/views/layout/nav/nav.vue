@@ -14,7 +14,7 @@
       v-for="(item,index) in items" 
       :key="index")
       template(slot="title") {{ item.title }}
-    far-user
+    User
     Popover
       
 </template>

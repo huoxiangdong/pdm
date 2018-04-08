@@ -1,8 +1,8 @@
 <template lang="pug">
 el-card(id="el-card" class="box-card")
   div(slot="header" class="clearfix")
-    wActiveAreaHeader
-    wDrawSpace
+   // wActiveAreaHeader
+   //wDrawSpace
     
 </template>
 

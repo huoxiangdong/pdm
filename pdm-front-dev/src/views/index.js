@@ -5,73 +5,85 @@ import Vue from 'vue'
 // vue-grid-canvas
 //import Grid from 'vue-grid-canvas'
 // 粒子效果
-import Nest from 'vue-atom-canvas'
-
+//import Nest from 'vue-atom-canvas'
+// 圆环菜单
+import CircleMenu from 'vue-circle-menu'
+Vue.component('CircleMenu', CircleMenu)
 // layout
-import farSideBar from './layout/SideBar/farSideBar'
-import FarWorkSpace from './layout/FarWorkSpace'
-import farFooter from './layout/farFooter'
-// navmenu
-import farNavMenu from './layout/NavMenu/farNavMenu.vue'
-import farPopover from './layout/NavMenu/farPopover'
-import FarUser from './layout/navmenu/FarUser.vue'
-import farIuputSearch from './layout/NavMenu/farIuputSearch.vue'
+import NavMenu from './layout/nav/nav' 
+import Popover from './layout/nav/popover'
+import User from './layout/nav/user'
+import Search from './layout/nav/search'  // navmenu
+import SideBar from './layout/sidebar/sidebar'
+import WorkSpace from './layout/workspace/workspace'
+import xFooter from './layout/footer'
 
 // workspace
-import wNavMenu from './workspace/w-navMenu.vue'
-import wActiveArea from './workspace/w-activeArea.vue'
-import wFrom from './workspace/w-from.vue'
-import wTable from './workspace/w-table.vue'
-import wDraw from './workspace/w-draw'
-import wBom from './workspace/w-bom.vue'
-// wNavMenu
-import wNavOne from './workspace/wNavMenu/w-navOne.vue'
-import wNavTwo from './workspace/wNavMenu/wNavTwo.vue'
-import wNavThree from './workspace/wNavMenu/w-navThree.vue'
-import wActiveAreaHeader from './workspace/wNavMenu/w-activeAreaHeader.vue'
-// wDraw
-import wDrawSpace from './workspace/wDraw/w-drawSpace.vue'
-import wDrawControl from './workspace/wDraw/w-drawControl.vue'
-// wBom
-import wBomData from './workspace/wBom/w-bomData.vue'
+import xNavMenu from './layout/workspace/nav/nav'
+import NavOne from './layout/workspace/nav/nav-one.vue'
+import NavTwo from './layout/workspace/nav/nav-two.vue'
+import NavThree from './layout/workspace/nav/nav-three.vue' // wNavMenu
+import Bom from './layout/workspace/bom/bom'
+
 // wTable
-import wBomTable from './workspace/wTable/w-bomTable.vue'
-import wMainBomTable from './workspace/wTable/w-mainBomTable.vue'
+//import wBomTable from './workspace/wTable/w-bomTable.vue'
+//import wMainBomTable from './workspace/wTable/w-mainBomTable.vue'
+
+//import xHeader from './workspace/wNavMenu/header.vue'
+
+//import wActiveArea from './workspace/w-activeArea.vue'
+//import wFrom from './workspace/w-from.vue'
+//import wTable from './workspace/w-table.vue'
+//import wDraw from './workspace/w-draw'
+
+
+
+
+// wDraw
+//import wDrawSpace from './workspace/wDraw/w-drawSpace.vue'
+//import wDrawControl from './workspace/wDraw/w-drawControl.vue'
+// wBom
+//import wBomData from './workspace/wBom/w-bomData.vue'
+// wTable
+//import wBomTable from './workspace/wTable/w-bomTable.vue'
+//import wMainBomTable from './workspace/wTable/w-mainBomTable.vue'
 
 // 注册全局组件
 
 // layout
-Vue.component('NavMenu', farNavMenu)
-Vue.component('SideBar', farSideBar)
-Vue.component('FarWorkSpace', FarWorkSpace)
-Vue.component('AppFooter', farFooter)
-Vue.component('Popover', farPopover)
-Vue.component('FarUser', FarUser)
-Vue.component('IuputSearch', farIuputSearch)
+Vue.component('NavMenu', NavMenu)
+Vue.component('Popover', Popover)
+Vue.component('User', User)
+Vue.component('Search', Search)  // nav
+Vue.component('SideBar', SideBar)
+Vue.component('WorkSpace', WorkSpace)
+Vue.component('xFooter', xFooter)
 
 // workspace
-Vue.component('wNavMenu',wNavMenu)
-Vue.component('wActiveArea',wActiveArea)
-Vue.component('wFrom', wFrom)
-Vue.component('wTable',wTable)
-Vue.component('wDraw', wDraw)
-Vue.component('wBom', wBom)
-// wNavMenu
-Vue.component('w-navone', wNavOne)
-Vue.component('w-navtwo', wNavTwo)
-Vue.component('w-navthree', wNavThree)
-Vue.component('wActiveAreaHeader',wActiveAreaHeader)
+Vue.component('xNavMenu', xNavMenu)
+Vue.component('NavOne', NavOne)
+Vue.component('NavTwo', NavTwo)
+Vue.component('NavThree', NavThree)  // wNavMenu
+Vue.component('Bom', Bom)
+//Vue.component('wActiveAreaHeader',wActiveAreaHeader)
+//Vue.component('wActiveArea',wActiveArea)
+//Vue.component('wFrom', wFrom)
+//Vue.component('wTable',wTable)
+//Vue.component('wDraw', wDraw)
+
+
+
 // wDraw
-Vue.component('wDrawSpace', wDrawSpace)
+//Vue.component('wDrawSpace', wDrawSpace)
 //wBom
-Vue.component('wBomData', wBomData)
+//Vue.component('wBomData', wBomData)
 //wTable
-Vue.component('wBomTable', wBomTable)
-Vue.component('wMainBomTable', wMainBomTable)
+//Vue.component('wBomTable', wBomTable)
+//Vue.component('wMainBomTable', wMainBomTable)
 // components
 //Vue.component('wDrawControl', w-DrawControl)
 // 粒子效果
-Vue.component('Nest', Nest)
+//Vue.component('Nest', Nest)
 
 // vue-3d-model
 //Vue.component('ModelObj', ModelObj)
@@ -89,6 +101,6 @@ Vue.component('Nest', Nest)
 //Vue.component(VPagination.name, VPagination)
 
 
-// wMaterialCard
-import wCard from './workspace/wMaterial/wMaterialCard'
-Vue.use(wCard)
+// MaterialCard
+import xCard from './layout/workspace/material/material-card'
+Vue.use(xCard)
