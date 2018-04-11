@@ -56,7 +56,7 @@ methods: {
 }
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
  // 走马灯 
   /*  .el-carousel__item h3 
      color: #475669
@@ -65,15 +65,12 @@ methods: {
      line-height: 300px
      margin: 0 */
 // 卡片背景颜色
-.el-carousel__item:nth-child(2n) 
-    background-color: #fff
-    
-.el-carousel__item:nth-child(2n+1) 
-    background-color:#fff 
-
-
-// 工作去卡片多的话使其滚动
-.el-carousel__item.is-active 
-  overflow-y: auto
-  overflow-x: hidden
+  .el-carousel__item:nth-child(2n) 
+      background-color: #fff     
+  .el-carousel__item:nth-child(2n+1) 
+      background-color:#fff 
+  // 工作去卡片多的话使其滚动
+  .el-carousel__item.is-active 
+    overflow-y: auto
+    overflow-x: hidden
 </style>

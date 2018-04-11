@@ -338,7 +338,7 @@
 </script>
 
 /* 样式 */
-<style>
+<style scoped>
   @media screen and (max-width: 700px) {
     #img-box,
     #canvas-drawImage h5,

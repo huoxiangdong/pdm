@@ -35,7 +35,7 @@ export default {
 };
 </script>
 
-<style lang='stylus'>
+<style lang='stylus' scoped>
 /* header */
 #c-card .el-card__header 
     padding: 8px 20px!important

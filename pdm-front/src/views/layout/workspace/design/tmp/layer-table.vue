@@ -100,7 +100,7 @@ export default {
 };
 </script>
 
-  <style lang='stylus'>
+  <style lang='stylus' scoped>
  /*  .el-table .cell 
     &:hover
       background-color : #fff */

@@ -1,37 +1,5 @@
 export default {
-  material_row: [
-    [{
-        position: 10,
-        design: '011582 NC047',
-        description: '22AWG 7/30 TC X .75',
-        diameter: 0.03,
-        quantity: 4.36387
-      },
-      {
-        position: 20,
-        design: '031050L NA047',
-        description: 'COMP,SR-PVC 105C APEX 8086 LF',
-        diameter: 0,
-        quantity: 1.58654
-      },
-    ],
-    [{
-        position: 10,
-        design: '011582 NC047',
-        description: '22AWG 7/30 TC X .75',
-        diameter: 0.03,
-        quantity: 4.36387
-      },
-      {
-        position: 20,
-        design: '031050L NA047',
-        description: 'COMP,SR-PVC 105C APEX 8086 LF',
-        diameter: 0,
-        quantity: 1.58654
-      },
-    ],
-   
-  ],
+  //material_row: [{}],
   material_columns: [
     // { label: 'APEX-XXX01', prop: '',width: 140,resizable:false },
      { label: '方位', prop: 'position',width: 60,resizable:false },

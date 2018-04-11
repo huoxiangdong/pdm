@@ -32,8 +32,8 @@ export default {
 };
 </script>
 
-<style lang="stylus">
-#man-nav .el-menu-item {
+<style lang="stylus" scoped>
+.el-menu-item {
     height: 35px;
     line-height: 35px;
 }

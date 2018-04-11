@@ -72,7 +72,7 @@ export default {
 };
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
 #center {
   margin-right: 19px;
 }

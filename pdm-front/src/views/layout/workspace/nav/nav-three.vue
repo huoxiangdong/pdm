@@ -19,7 +19,7 @@ export default {
 }
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
 .el-breadcrumb {
   padding: 24px;
 }

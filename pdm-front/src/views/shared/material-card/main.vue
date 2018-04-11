@@ -1,7 +1,7 @@
 <template lang="pug">
 // :model="observerValue" 
 div
-  el-card(class="box-card" :body-style="bodyStyle" v-for="(item, key, index) in renderInputs" :key="item.id" v-bind="getInputs(key)")
+  el-card(:style="style" :body-style="bodyStyle" v-for="(item, key, index) in renderInputs" :key="item.id" v-bind="getInputs(key)")
    div(slot="header")
       span(style="font-size:13px;font-weight:bolder;") {{ key }}   
    el-form(class="el-from")
@@ -35,7 +35,7 @@ const INPUT_ITEM = {
 };
 
 export default {
-  name: "wCard",
+  name: "matCard",
   props: {
     baseData: { // 基本数据
       type: [Object, Array],
@@ -47,7 +47,26 @@ export default {
       type: String,
       //required: true
     },
-    inputGrid: Object, // 布局
+    inputGrid: {
+      type: Object,
+      default() {
+        return {
+        display: "grid",
+        "grid-template-columns": "1fr 1fr",
+        "grid-row-gap": "10px",
+        "grid-column-gap": "10px"
+      }
+      }
+    }, // 布局
+    style: {
+      type: Object,
+      default() {
+        return {
+          margin: '10px 160px'
+        }
+      }
+
+    },
     initInputData: Object,  // 初始化默认 新增
     inputSchema:Object // 自定义模板
   },
@@ -336,13 +355,13 @@ export default {
 
 <style lang="stylus" scoped>
 div >>>
+    /* .el-card 
+      margin: 10px 160px */
     .el-card__header 
       background-color: #999999
       padding: 5px 20px
     /* .el-form-item 
         margin-bottom: 2px */
-    .box-card 
-      margin: 10px 160px
     .el-from 
       margin: auto 50px
     // title

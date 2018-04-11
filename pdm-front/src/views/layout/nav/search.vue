@@ -54,7 +54,7 @@ el-autocomplete(
   }
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
 
 #input input{
   border-radius: 0px;

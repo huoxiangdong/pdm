@@ -4,8 +4,7 @@
     v-bind="getData(value)"
     :cardNum="getCardNum(index)"
     :cardHeaderTitle="key"
-w-Card(
-    id="1"
+mat-card(
     :inputGrid="inputGrid_1"
     :baseData="materialData"
     :initInputData="initInputData"
@@ -60,7 +59,7 @@ w-Card(
 //import qs from "qs"
 import Vue from "vue";
 import { mapState, mapActions } from "vuex";
-import Data from "./material-card/data";
+import Data from "./data";
 import Schema from "./schema";
 export default {
   mixins: [Schema],
@@ -68,12 +67,12 @@ export default {
     return {
       materialData: Data.data,
       initInputData: Data.initData,
-      inputGrid_1: {
+     /*  inputGrid_1: {
         display: "grid",
         "grid-template-columns": "1fr 1fr",
         "grid-row-gap": "10px",
         "grid-column-gap": "100px"
-      }
+      } */
     };
   },
   computed: {

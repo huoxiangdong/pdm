@@ -32,6 +32,3 @@ components: {
 }
 </script>
 
-<style>
-
-</style>

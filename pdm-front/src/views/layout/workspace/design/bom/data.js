@@ -1,6 +1,6 @@
 export default {
     main_row: [ // row
-       [{
+       /* [{
           layer: 10,
           process: 'INSULATE',
           thickness: 0.010,
@@ -11,7 +11,7 @@ export default {
           machine: 5555103,
           setuptime:0.037,
           runtime:0.033
-        },],  
+        },],   */
            
       ],
       main_columns: [       // 列

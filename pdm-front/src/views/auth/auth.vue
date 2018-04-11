@@ -56,7 +56,7 @@
 
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
 .app-auth
   position relative
   width 100%

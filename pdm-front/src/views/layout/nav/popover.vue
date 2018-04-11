@@ -6,15 +6,15 @@
 
     i(class="iconfont icon-xiaoxitongzhi" ) 
     // 标记
-    el-badge(:value="12" class="item")
+    el-badge(:value="1" class="item")
     // 弹出框
     el-popover(
     ref="popover2"
     placement="bottom"
-    title="FUCK"
+    title="欢迎"
     width="200"
     trigger="hover"
-    content="FUCK!!!!!!!!!!!!!!!")
+    content="感谢使用")
   
 </template>
 

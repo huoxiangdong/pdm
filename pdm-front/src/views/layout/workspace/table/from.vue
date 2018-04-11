@@ -56,7 +56,7 @@
   }
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
 #el-from 
   margin-top: 25px
   margin-left: 25px

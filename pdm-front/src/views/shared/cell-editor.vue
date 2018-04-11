@@ -58,11 +58,13 @@ export default {
         border-radius: 0px
         //text-align:center
         padding: 0px 3px
-        border: 1px solid #fff // 和cell统一颜色
+        border: 1px dotted #fff // 和cell统一颜色
+        //border-style:none dashed
     .el-input__inner:hover 
         border-color: #c0c4cc
     .el-input__inner:focus
         outline: none
         border-color: #282C35
+        //border-color: #ff5000
    
 </style>

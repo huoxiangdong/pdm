@@ -42,7 +42,7 @@
   };
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
  .el-dialog__header
     padding: 0px
 

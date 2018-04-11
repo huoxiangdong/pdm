@@ -3,6 +3,7 @@
       default-active="1-4-1" 
   transition(name="el-zoom-in-center")    
    el-menu(
+     style="margin-top: 20px; margin-left:20px"
      :default-active="$route.path" 
      router
      id="sidebar"
@@ -37,12 +38,19 @@ export default {
     items:function(){
       // state localStrage都要获取
       let  { navIndex:index } = this
-      let navIndex = localStorage.getItem("navIndex")
+      let navIndex = localStorage.getItem('navIndex')
+      let barState = localStorage.getItem('barState')
       if (navIndex == 0) {
-         return Data.default
+         if(barState == 1) { 
+           return Data.design
+           }else {
+             return  Data.material
+           }   
       }else if(navIndex == 1) {
+        localStorage.setItem('barState', navIndex)
         return Data.design
       }else if(navIndex == 2) {
+        localStorage.setItem('barState', navIndex)
         return  Data.material
       }
     }
@@ -77,12 +85,10 @@ export default {
 }
 </script>
 
-<style lang="stylus">
-#sidebar .el-submenu__title
-   // background-color:#000
+<style lang="stylus" scoped>
 // 侧边菜单
- .el-aside
+ //.el-aside
    //width:200px!important
-   margin-top: 20px
-   margin-left:20px
+  // margin-top: 20px
+  // margin-left:20px
 </style>

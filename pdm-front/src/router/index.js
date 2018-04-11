@@ -59,7 +59,12 @@ requireAuth: true, // 添加该字段表示该路由需要登录,路由验证
       name: 'Bom',
       path: 'Bom',
       component: resolve =>
-        import ('@/views/layout/workspace/bom/bom').then(resolve)
+        import ('@/views/layout/workspace/design/bom/main').then(resolve)
+    },{
+      name: 'Partially',
+      path: 'Partially',
+      component: resolve =>
+        import ('@/views/layout/workspace/design/partially/main').then(resolve)
     }, {
       name: 'MaterialBill',
       path: 'MaterialBill',

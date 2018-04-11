@@ -6,7 +6,7 @@
     @selection-change="selectionChange"
     column-type="selection"
     :show-header="index==0?true:false"
-el-card(:style="card_style" :body-style="bodyStyle" )
+el-card(:style="card_style" :body-style="cardBodyStyle" )
   div(slot="header")
     span 产品名称: APEX-XXX
     el-button(type="text" style="float: right; padding: 1px 0;" @click="dialogVisible = true")
@@ -30,10 +30,11 @@ el-card(:style="card_style" :body-style="bodyStyle" )
   // table
   template(v-for="(value,index) in main_row" v-bind="getIndex(value)" style="display:grid;grid-template-columns:1fr 1fr")
     egrid(
-        border
-        size="small"
         :data="value"
         :columns="main_columns"
+        border
+        stripe
+        size="small"
         :header-cell-style="main_headerStyle"
         :cell-style="main_cellStyle"
         :columns-props="columnsProps"
@@ -45,7 +46,7 @@ el-card(:style="card_style" :body-style="bodyStyle" )
               style="width:10%;padding-right: 15px;padding-left: 5px;;margin:26px 0px 1px" 
               class="delete"
               ) 
-    //div(style="display:grid;grid-template-columns:1fr 1fr")
+    div(style="display:grid;grid-template-columns:1fr 1fr" v-for="item in 2")
       egrid(
         style="width:140px;height:28px;justify-self: right;"
         :data="half"
@@ -53,26 +54,30 @@ el-card(:style="card_style" :body-style="bodyStyle" )
         :show-header="false"
         :cell-style="half_cellStyle")
       // 物料
-      //egrid(
+      egrid(
+        :data="material_row"
+        :columns="material_columns"
         border
         stripe
+        empty-text
+        :columns-props="columnsProps"
+        @cell-dblclick="cell_dblclick"
         size="small"
         :header-cell-style="material_headerStyle"
         :cell-style="material_cellStyle"
         :style="material_style"
-        :data="value"
-        :columns="material_columns"
-        :columns-props="columnsProps"
-        @cell-dblclick="cell_dblclick")
+        )
 </template>
 
-  <script>
+<script>
+import cardBodyStyle from '@/views/shared/mixins/card-style.js'
 import Vue from "vue";
 import Data from "./data";
 import Layer from "./layer";
-import Editor from "./cell-editor";
+import Editor from "@/views/shared/cell-editor";
 import { mapActions } from "vuex";
 export default {
+  mixins: [cardBodyStyle],
   data() {
     return {
       options: [
@@ -145,11 +150,7 @@ export default {
         }
         }
       },  */
-      bodyStyle: {
-        margin: "0px auto",
-        background: "#f2f2f2",
-        "min-height": "600px"
-      },
+      
       // data
       main_row: Data.main_row,
       main_columns: Data.main_columns,
@@ -215,14 +216,10 @@ export default {
   },
   methods: {
     //...mapActions(['isReadOnly']),
-    handleClose(e) {
-      // 弹出框
-      /* const tr = this.$el.querySelector("tbody").children;
-      const rows = [].filter.call(tr, row => row); */
-
+    handleClose(e) {   // 弹出框
       console.log(this.formProcess);
       let data = Object.assign({},this.formProcess)
-      this.main_row.push([data])
+      this.main_row.push([this.formProcess])
 
       this.dialogVisible = !this.dialogVisible; // 关闭弹框
     },
@@ -239,7 +236,7 @@ export default {
       //this.isReadOnly()
       //event.target.hidden = true
       event.target.readOnly = !event.target.readOnly;
-      console.log(event.target.value);
+      console.log(this);
     },
     
   },
@@ -255,14 +252,8 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-/* .el-card
-   overflow-y: auto
-   overflow-x: hidden */
-.el-card >>> 
-  .el-card__header 
-    background-color: #999999
-    padding: 10px 20px
-  .el-table--border th:first-child .cell, .el-table--border td:first-child .cell 
+.el-card >>>
+ .el-table--border th:first-child .cell, .el-table--border td:first-child .cell 
     padding-left: 0px
   .el-table .cell 
     padding-left: 0px // cell

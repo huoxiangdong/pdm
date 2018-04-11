@@ -103,5 +103,5 @@ Vue.component('Bom', Bom)
 
 
 // MaterialCard
-import xCard from './layout/workspace/material/material-card'
-Vue.use(xCard)
+import matCard from './shared/material-card'
+Vue.use(matCard)

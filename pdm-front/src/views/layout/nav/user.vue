@@ -18,7 +18,7 @@
           el-dropdown-item 
             i(class="iconfont icon-shezhi") 
             |   设置 
-          el-dropdown-item(command)
+          el-dropdown-item(command="out")
             i(class="iconfont icon-tuichu") 
             |   退出登录
 </template>
@@ -35,13 +35,16 @@ export default {
     ...mapActions([
       'userLoginOut'
     ]),
-    loginOut() { // 登出
+    loginOut(command) { // 登出
+      //console.log(command)
+      if(command=='out') {
       this.userLoginOut();
       this.user.name = null; // name置null
       if (!this.$store.state.token) {
         this.$router.push("/auth/login");
         this.$message.success("登出成功");
       } else { this.$message.success("登出失败"); }
+      }
     }
   },
   beforeCreate() {

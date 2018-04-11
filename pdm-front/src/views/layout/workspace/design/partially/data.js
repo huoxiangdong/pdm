@@ -1,117 +1,86 @@
-<template>
-  <el-table
-    id="el-table"
-    :data="tableData3"
-    style="width: 80%"
-    height="250">
-    <el-table-column
-      fixed
-      prop="date"
-      label="日期"
-      width="150">
-    </el-table-column>
-    <el-table-column
-      prop="name"
-      label="姓名"
-      width="120">
-    </el-table-column>
-    <el-table-column
-      prop="province"
-      label="省份"
-      width="120">
-    </el-table-column>
-    <el-table-column
-      prop="city"
-      label="市区"
-      width="120">
-    </el-table-column>
-    <el-table-column
-      prop="address"
-      label="地址"
-      width="300">
-    </el-table-column>
-    <el-table-column
-      prop="zip"
-      label="邮编"
-      width="120">
-    </el-table-column>
-  </el-table>
-</template>
-
-<script>
-import { mapState } from 'vuex'
-  export default {
-    data() {
-      return {
-        tableData3: [{
+export default {
+    data: [
+        {
           date: '2016-05-03',
           name: '王小虎',
           province: '上海',
           city: '普陀区',
           address: '上海市普陀区金沙江路 1518 弄',
           zip: 200333
-        }, {
+        },
+        {
           date: '2016-05-02',
           name: '王小虎',
           province: '上海',
           city: '普陀区',
           address: '上海市普陀区金沙江路 1518 弄',
           zip: 200333
-        }, {
+        },
+        {
           date: '2016-05-04',
           name: '王小虎',
           province: '上海',
           city: '普陀区',
           address: '上海市普陀区金沙江路 1518 弄',
           zip: 200333
-        }, {
+        },
+        {
           date: '2016-05-01',
           name: '王小虎',
           province: '上海',
           city: '普陀区',
           address: '上海市普陀区金沙江路 1518 弄',
           zip: 200333
-        }, {
+        },
+        {
           date: '2016-05-08',
           name: '王小虎',
           province: '上海',
           city: '普陀区',
           address: '上海市普陀区金沙江路 1518 弄',
           zip: 200333
-        }, {
+        },
+        {
           date: '2016-05-06',
           name: '王小虎',
           province: '上海',
           city: '普陀区',
           address: '上海市普陀区金沙江路 1518 弄',
           zip: 200333
-        }, {
+        },
+        {
           date: '2016-05-07',
           name: '王小虎',
           province: '上海',
           city: '普陀区',
           address: '上海市普陀区金沙江路 1518 弄',
           zip: 200333
-        }]
-      }
-    },
-    computed: {
-      ...mapState(['navTwoKey'])
-    },
-   /*  watch: {
-      navTwoKey:function(val,oldVal) {
-       
-        if(val===1) {
-          console.log(this)
         }
-      }
-    } */
-  }
-</script>
-
-
-<style lang="stylus" scoped>
-#el-table
-  margin-left: 25px
-  //margin-right: 25px
-</style>
+      ],
+      
+      columns: [
+        { label: '方向', prop: 'date',resizable:false  },
+        { label: '物料', prop: 'name',resizable:false  },
+        { label: '描述', prop: 'province',resizable:false  },
+        { label: '直径', prop: 'city',resizable:false  },
+        { label: '数量', prop: 'address','show-overflow-tooltip':true,resizable:false  },
+        { label: '组数', prop: 'zip',resizable:false  },
+        { label: '损耗率', prop: 'zip',resizable:false  }
+      ],
+      header: {
+        '基本信息': [
+          {
+              key:'MatNumber',
+              title:'物料编号',
+              value:'',
+              isInput:true
+          },
+          {
+              key:'MatName',
+              title:'物料名称',
+              value:'',
+              isInput:true
+          }]
+    }
+      
+}
