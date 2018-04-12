@@ -80,7 +80,13 @@ export default {
               title:'物料名称',
               value:'',
               isInput:true
-          }]
+          },
+          {
+            key:'MatName',
+            title:'创建人',
+            value:'',
+            isInput:true
+        }]
     }
       
 }

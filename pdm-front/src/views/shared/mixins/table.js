@@ -3,7 +3,6 @@
 // const h = Vue.$createElement;
 import Editor from "../cell-editor";
 export default {
-    
     data() {
         return {
             headerStyle: { // 表格头部样式
@@ -23,6 +22,7 @@ export default {
               },
               columnsProps: {
                 // 定义表格列如何渲染
+                component: Editor
                  /* component: Vue.extend({ 
                   props: ["row", "column"],
                   render(h) {
@@ -43,17 +43,24 @@ export default {
                     });
                   }
                 }) */
-                component: Editor
+                
               },
         }
     },
     methods:{
-        cell_dblclick(row, column, cell, event) {
-            // cell双击
+        cell_dblclick(row, column, cell, event) { // cell双击
             //this.isReadOnly()
             //event.target.hidden = true
             event.target.readOnly = !event.target.readOnly;
             console.log(this);
           },
+          row_contextmenu(row,event) { // 选中某行
+            event.preventDefault() 
+            let x = event.clientX + 'px'
+            let y = event.clientY + 'px'
+            // console.log(x,y)
+            this.$contextmenu({ x,y })
+            
+          }
     }
 }

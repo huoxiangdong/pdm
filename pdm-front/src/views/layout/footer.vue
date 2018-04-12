@@ -8,6 +8,7 @@
 
 <script>
 export default {
+  name: "xFooter",
   props: {
     links: {
       type: Array,

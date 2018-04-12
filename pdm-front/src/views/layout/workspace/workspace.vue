@@ -39,6 +39,7 @@
 import wAddLayer from '../workspace/wBom/w-addLayer.vue' */
 
 export default {
+  name: "WorkSpace",
   data() {
     return {}
   },

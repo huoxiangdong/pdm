@@ -33,6 +33,7 @@
 <script>
 import { mapState,mapActions } from 'vuex';
 export default {
+  name:"NavTwo",
   data() {
     return {
       // 菜单默认激活状态

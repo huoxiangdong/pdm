@@ -1,5 +1,5 @@
 export default {
-  //material_row: [{}],
+  material_row: [{}],
   material_columns: [
     // { label: 'APEX-XXX01', prop: '',width: 140,resizable:false },
      { label: '方位', prop: 'position',width: 60,resizable:false },

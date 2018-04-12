@@ -20,6 +20,7 @@
 
 <script>
 export default {
+  name: "Popover",
 /*  mounted() {
    this.$refs['popover'].handleClick = function() { // 阻止默认事件
      return false

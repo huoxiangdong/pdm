@@ -23,6 +23,7 @@
 <script>
 import { mapState, mapActions } from "vuex";
 export default {
+   name: "NavMenu",
   data() {
     return {
       //activeIndex: "index" // 菜单默认活动状态

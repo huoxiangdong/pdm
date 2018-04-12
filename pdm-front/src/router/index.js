@@ -81,7 +81,6 @@ requireAuth: true, // 添加该字段表示该路由需要登录,路由验证
       component: resolve =>
         import ('@/views/layout/workspace/material/process-card').then(resolve)
     }]
-
   }]
 }, { // 验证
   path: '/auth',

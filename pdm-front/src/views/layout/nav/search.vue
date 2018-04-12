@@ -14,6 +14,7 @@ el-autocomplete(
 
 <script>
   export default {
+    name: "Search",
     data() {
       return {
         restaurants: [],

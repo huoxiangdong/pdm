@@ -3,16 +3,17 @@
    div(slot="header")
      span 半成品
    mat-card(
-    :style={ margin: '0px -155px' }
-    :inputGrid="inputGrid"
+     cardStyle="margin:10px 2px"
+     :inputGrid="inputGrid"
     :baseData="headerData")
-   egrid( border
-          :slot-append="true"
-          column-type="index"
+   egrid(border
+         column-type="index"
          :data="data"
          :columns="columns"
          :columns-props="columnsProps"
          @cell-dblclick="cell_dblclick"
+         @row-contextmenu="row_contextmenu"
+         style="border-radius: 4px; box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);"
          :header-cell-style="headerStyle"
          :cell-style="cellStyle")
 </template>
@@ -25,12 +26,12 @@ export default {
   mixins: [cardStyle,table],
   data() {
     return {
-     /*  inputGrid: {
+      inputGrid: {
         display: "grid",
         "grid-template-columns": "1fr 1fr",
         "grid-row-gap": "10px",
-        "grid-column-gap": "10px"
-      }, */
+        "grid-column-gap": "30px"
+      },
       data: Data.data,
       columns: Data.columns,
       headerData:Data.header

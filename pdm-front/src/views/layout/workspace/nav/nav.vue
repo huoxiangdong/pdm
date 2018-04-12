@@ -8,6 +8,7 @@ div
 
 <script>
 export default {
+  name:"xNavMenu",
   data() {
     return {
      

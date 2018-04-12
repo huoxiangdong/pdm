@@ -18,6 +18,7 @@
 
 <script>
 export default {
+  name:"NavOne",
   data() {
     return {
       activeIndex: "1",

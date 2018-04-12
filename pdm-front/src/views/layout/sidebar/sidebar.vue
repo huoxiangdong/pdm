@@ -22,6 +22,7 @@
 import { mapState,mapActions } from 'vuex'
 import Data from './titles'
 export default {
+  name: "SideBar",
   data() {
      return { // 静态数据
        //titles: Data.Titles

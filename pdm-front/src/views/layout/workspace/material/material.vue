@@ -5,7 +5,7 @@
     :cardNum="getCardNum(index)"
     :cardHeaderTitle="key"
 mat-card(
-    :inputGrid="inputGrid_1"
+ 
     :baseData="materialData"
     :initInputData="initInputData"
     :inputSchema="inputSchema"

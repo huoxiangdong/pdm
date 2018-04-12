@@ -1,7 +1,7 @@
 <template lang="pug">
 // :model="observerValue" 
 div
-  el-card(:style="style" :body-style="bodyStyle" v-for="(item, key, index) in renderInputs" :key="item.id" v-bind="getInputs(key)")
+  el-card(:style="cardStyle" :body-style="bodyStyle" v-for="(item, key, index) in renderInputs" :key="item.id" v-bind="getInputs(key)")
    div(slot="header")
       span(style="font-size:13px;font-weight:bolder;") {{ key }}   
    el-form(class="el-from")
@@ -58,8 +58,8 @@ export default {
       }
       }
     }, // 布局
-    style: {
-      type: Object,
+    cardStyle: {
+      type: [Object,String],
       default() {
         return {
           margin: '10px 160px'
@@ -203,7 +203,7 @@ export default {
         this.$message.error("你真厉害，被你发现了😝");
         return false; }
    },
-    queryMaterialData() {  // 查询input数据
+    queryMaterialData() {  // 查询
       if (this.$rest) {
         this.$rest.submit
           .queryMaterialData(this.queryData) // 提交
@@ -212,6 +212,7 @@ export default {
               this.$message.error(res.message);
             } else {
               console.log(res.data)
+              
               this.observerValue = res.data;
               this.$message.success(res.message);
             }
@@ -355,13 +356,9 @@ export default {
 
 <style lang="stylus" scoped>
 div >>>
-    /* .el-card 
-      margin: 10px 160px */
     .el-card__header 
       background-color: #999999
       padding: 5px 20px
-    /* .el-form-item 
-        margin-bottom: 2px */
     .el-from 
       margin: auto 50px
     // title
