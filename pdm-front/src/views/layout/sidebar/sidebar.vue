@@ -43,13 +43,13 @@ export default {
       let barState = localStorage.getItem('barState')
       if (navIndex == 0) {
          if(barState == 1) { 
-           return Data.design
+           return Data.product
            }else {
              return  Data.material
            }   
       }else if(navIndex == 1) {
         localStorage.setItem('barState', navIndex)
-        return Data.design
+        return Data.product
       }else if(navIndex == 2) {
         localStorage.setItem('barState', navIndex)
         return  Data.material

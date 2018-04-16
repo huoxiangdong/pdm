@@ -5,11 +5,10 @@
     :cardNum="getCardNum(index)"
     :cardHeaderTitle="key"
 mat-card(
- 
-    :baseData="materialData"
-    :initInputData="initInputData"
-    :inputSchema="inputSchema"
-   )
+        :baseData="materialData"
+        :initInputData="initInputData"
+        :inputSchema="inputSchema")
+  
   //- w-Card(
   //-   id="2"
   //-   cardHeaderTitle="采购(或外协)参数"

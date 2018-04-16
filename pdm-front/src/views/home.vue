@@ -13,7 +13,8 @@
         side-bar
         //side-bar(v-on:setActiveItem="setActiveItem")
       el-main
-        nav-two
+        multi-menu(type="icon" )
+        //el-tag(type="success" size="small" closable) 中等标签
         router-view
         
         //WorkSpace(ref="carousel")
@@ -113,4 +114,26 @@ export default {
   } */
 };
 </script>
+<style lang="stylus" scoped>
+// .el-header
+//   position: fixed
+//   width: 100%
+//   left: 0
+//   top: 0
+//   z-index: 1500
+// .el-menu-item 
+//     height: 26px;
+//     line-height: 26px;
+//     font-size: 14px;
+//     color: #303133;
+//     padding: 0 20px;
+//     list-style: none;
+//     cursor: pointer;
+//     //position: relative;
+//     // -webkit-transition: border-color .3s, background-color .3s, color .3s;
+//     // transition: border-color .3s, background-color .3s, color .3s;
+//     // -webkit-box-sizing: border-box;
+//     // box-sizing: border-box;
+//     white-space: nowrap; // 文本不换行
+</style>
 

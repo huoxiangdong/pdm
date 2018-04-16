@@ -1,11 +1,11 @@
 <template lang="pug">
 // 给定两个元素,布尔值判断显示
 // this.$set(this.row, '_edit', !this.row._edit)
-div(id="cell-editor")
-    el-input(
+el-input(
         type="text"
         readonly
         @blur="isReadOnly"
+       
         @keyup.enter.native="isBlur"
         v-model="row[column.property]")
 //span(
@@ -34,13 +34,14 @@ export default {
   },
   methods: {
       isBlur(event) { // 回车失去焦点
-        event.target.blur()
+        event.target.blur() 
         console.log(event)
       },
       isReadOnly(event) { // 失去焦点后只读
           event.target.readOnly = true
-          console.log(event.target.readOnly)
-      }
+          console.log('失去焦点')
+      },
+
  
 
   },

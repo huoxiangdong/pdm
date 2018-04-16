@@ -99,15 +99,16 @@ import SideBar from './layout/sidebar/sidebar'
 import WorkSpace from './layout/workspace/workspace'
 import xFooter from './layout/footer'
 // workspace
-import xNavMenu from './layout/workspace/nav/nav'
-import NavOne from './layout/workspace/nav/nav-one.vue'
-import NavTwo from './layout/workspace/nav/nav-two.vue'
-import NavThree from './layout/workspace/nav/nav-three.vue' // wNavMenu
-
-// MaterialCard
-import matCard from './shared/material-card'
-//Vue.use(matCard)
-
+//import xNavMenu from './layout/workspace/nav/nav'
+//import NavOne from './layout/workspace/nav/nav-one.vue'
+//import NavTwo from './layout/workspace/nav/nav-two.vue'
+//import NavThree from './layout/workspace/nav/nav-three.vue' // wNavMenu
+// packages
+import matCard from './packages/material-card'
+import xTable from './packages/table'
+import multiMenu from './packages/multi-menu'
+// plugin
+import ContextMenu from './packages/contextmenu'
 
 const components = [
   NavMenu,
@@ -117,21 +118,18 @@ const components = [
   SideBar,
   WorkSpace,
   xFooter,
-  // workspace
-  xNavMenu,
-  NavOne,
-  NavTwo,
-  NavThree,
-  matCard
+  //
+  matCard,
+  xTable,
+  multiMenu
 ];
 
 components.map(component => {
     Vue.component(component.name, component);
   });
 
-// plugin
-import ContextMenu from './shared/contextmenu'
 Vue.prototype.$contextmenu = ContextMenu;
+
 
 /* const install = function(Vue, opts = {}) {
     components.map(component => {

@@ -70,11 +70,11 @@ el-card(:style="card_style" :body-style="cardBodyStyle" )
 </template>
 
 <script>
-import cardBodyStyle from '@/views/shared/mixins/card-style.js'
+import cardBodyStyle from '@/views/packages/mixins/card-style.js'
 import Vue from "vue";
 import Data from "./data";
 import Layer from "./layer";
-import Editor from "@/views/shared/cell-editor";
+import Editor from "@/views/packages/table/cell-editor";
 import { mapActions } from "vuex";
 export default {
   mixins: [cardBodyStyle],

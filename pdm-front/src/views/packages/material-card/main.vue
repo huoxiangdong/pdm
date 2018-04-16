@@ -284,7 +284,7 @@ export default {
     // 初始菜单状态
     initNavState(val, oldVal) {
       this.getNavTwoIndex(~~0);
-      console.log("new: %s, old: %s", val, oldVal);
+      //console.log("new: %s, old: %s", val, oldVal);
     },
     getInputs(value) {
       /* console.log("renderInputs是");

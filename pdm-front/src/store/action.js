@@ -13,13 +13,14 @@ const actions = {
 
   getSideBarIndex({ commit }, index) { commit(types.SIDEBARINDEX,index) }, // 获取sidebar菜单
 
-  getNavIndex( { commit }, index) { commit(types.NAVINDEX,index) }, // 获取主菜单index
+  getNavIndex({ commit }, index) { commit(types.NAVINDEX,index) }, // 获取主菜单index
 
-  getNavTwoIndex( { commit }, index) { commit(types.NAVTWOINDEX, index) }, // 修改工作区菜单index
+  getMultiMenuIndex({ commit }, index) { commit(types.MULTIMENUINDEX, index) }, // multiMenu index
 
-  getObserverValues( { commit }, value) { commit(types.OBSERVERVALUES, value) },
+  getObserverValues({ commit }, value) { commit(types.OBSERVERVALUES, value) },
 
-  isReadOnly( { commit }) { commit(types.ISREADONLY) }
+  isReadOnly({ commit }) { commit(types.ISREADONLY) }, // cell可编辑
+
 }
 
 export default actions

@@ -2,49 +2,41 @@
 import * as types from './mutation-types'
 
 export const mutations = {
-  // 登录
-  [types.LOGIN](state, data) {  
+  [types.LOGIN](state, data) {  // 登录  
     localStorage.setItem('token', data.token)
     state.token = data.token
     localStorage.setItem('username', data.name)
     state.username = data.name
   },
-  // 登出
-  [types.LOGINOUT](state) {
+  [types.LOGINOUT](state) { // 登出
     localStorage.removeItem('token')
     state.token = ''
     localStorage.removeItem('username')
     state.username = ''
   },
-  // SideBar折叠
-  [types.ISCOLLAPSE](state) {
+  [types.ISCOLLAPSE](state) { // SideBar折叠
     localStorage.setItem('isCollapse', !state.isCollapse)
     state.isCollapse = !state.isCollapse
   },
-  // 获取SideBar index
-  [types.SIDEBARINDEX](state,index) {
+  [types.SIDEBARINDEX](state,index) { // 获取SideBar index
     state.sideBarIndex = index
   },
-  // 打开添加工序
-  [types.OPENADDLAYER](state) {
+  [types.OPENADDLAYER](state) { // 打开添加工序
     state.isOpenAddLayer = !state.isOpenAddLayer
   },
-  // 获取主菜单index
-  [types.NAVINDEX](state,index) {
+  [types.NAVINDEX](state,index) { // 获取主菜单index
     //console.log(index)
     localStorage.setItem('navIndex',index)
     state.navIndex = index
   },
-  // 获取navtwo index
-  [types.NAVTWOINDEX](state,index) {
-    state.navTwoIndex = index
+  [types.MULTIMENUINDEX](state,index) { // 获取multiMenu index
+    state.multiMenuIndex = index
   },
-  // 获取基础物料提交数据
-  [types.OBSERVERVALUES](state,value) {
+  [types.OBSERVERVALUES](state,value) { // 获取基础物料提交数据
     console.log(value)
     state.observerValues = value
   },
-  [types.ISREADONLY](state) {
+  [types.ISREADONLY](state) { // cell可编辑
     state.readonly = !state.readonly
   }
 }

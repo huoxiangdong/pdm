@@ -43,3 +43,4 @@ var app = new Vue({
 })
 
 
+console.log(app.$contextmenu())

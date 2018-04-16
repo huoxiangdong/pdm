@@ -12,9 +12,9 @@ const state = {
   isOpenAddLayer: false,
   navIndex:'',
   sideBarIndex: '',
-  navTwoIndex: '',
+  multiMenuIndex: '',
   observerValues:'', // 基础物料提交数据
-  readonly: true
+  readonly: true,
 }
 
 export default new Vuex.Store({

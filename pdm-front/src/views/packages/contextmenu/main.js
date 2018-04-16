@@ -1,9 +1,11 @@
 import Vue from 'vue';
-//import Main from './main.vue';
+import store from '@/store'
+import Main from './main.vue';
 import { PopupManager } from 'element-ui/src/utils/popup';
 //import { isVNode } from 'element-ui/src/utils/vdom';
 
-let ContextMenuConstructor = Vue.extend(require('./main.vue').default); // 子类
+//let ContextMenuConstructor = Vue.extend(require('./main.vue').default); // 子类
+let ContextMenuConstructor = Vue.extend(Main) // 子类
 
 let instance; // 实例
 let instances = []; // 实例栈 控制关闭
@@ -27,7 +29,7 @@ const ContextMenu = function(options) {
 //     ContextMenu.close(id, userOnClose);
 //   };
   
-  instance = new ContextMenuConstructor({ data: options }); // 实例
+  instance = new ContextMenuConstructor({ data: options,store }); // 实例
   
   instance.id = id;
 
@@ -45,7 +47,7 @@ const ContextMenu = function(options) {
   
   instance.dom.style.zIndex = PopupManager.nextZIndex(); // 设置 z-index属性
   //instances.push(instance);
-  //console.log(instance.$destroy)
+  //console.log(instance)
   return instance.vm; // 返回实例
 };
 

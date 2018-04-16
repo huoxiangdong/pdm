@@ -1,7 +1,7 @@
 
 // import Vue from 'vue'
 // const h = Vue.$createElement;
-import Editor from "../cell-editor";
+import Editor from "../table/cell-editor";
 export default {
     data() {
         return {
@@ -52,13 +52,13 @@ export default {
             //this.isReadOnly()
             //event.target.hidden = true
             event.target.readOnly = !event.target.readOnly;
-            console.log(this);
+            //console.log(this);
           },
           row_contextmenu(row,event) { // 选中某行
             event.preventDefault() 
             let x = event.clientX + 'px'
             let y = event.clientY + 'px'
-            // console.log(x,y)
+            
             this.$contextmenu({ x,y })
             
           }

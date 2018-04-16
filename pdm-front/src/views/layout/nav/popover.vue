@@ -33,6 +33,6 @@ export default {
 
 <style lang="stylus" scoped>
  #popover
-   padding-top: 21px
+   padding-top: 22px
    border-right: solid 0px #e6e6e6; 
 </style>

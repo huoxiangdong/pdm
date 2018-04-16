@@ -4,9 +4,7 @@
     router
     class="el-menu-demo" 
     mode="horizontal"
-    @select="handleSelect"
-    
-    )
+    @select="handleSelect")
     // 1 @click.native="isCollapse=!isCollapse" 点击事件，控制sidebar
     el-menu-item(
       :id="index"
@@ -22,6 +20,7 @@
 
 <script>
 import { mapState, mapActions } from "vuex";
+import Data from './data'
 export default {
    name: "NavMenu",
   data() {
@@ -31,20 +30,7 @@ export default {
          index:['index','/workspace/design','/workspace/material'],
          title:['处理中心','产品管理','物料管理']
       } */
-      items: [
-        {
-          title: "处理中心",
-          index: "index"
-        },
-        { 
-          title: "产品管理", 
-          index: "/WorkSpace/Design" 
-          },
-        { 
-          title: "物料管理", 
-          index: "/WorkSpace/MaterialBill" 
-          }
-      ]
+      items: Data.items
     };
   },
   computed: {
@@ -74,9 +60,8 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-#center {
-  margin-right: 19px;
-}
+
+  
 </style>
 
 

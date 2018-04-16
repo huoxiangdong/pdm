@@ -7,9 +7,9 @@
     :autoplay="false"
     ref='carousel'
     )
-    el-carousel-item
+    el-carousel-item   
        router-view
-      
+       
     //el-carousel-item
       table
     //el-carousel-item
