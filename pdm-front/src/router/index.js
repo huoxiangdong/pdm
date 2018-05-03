@@ -120,17 +120,17 @@ const router = new Router({
 // to 进入 from 离开 next 传递
 router.beforeEach((to, from, next) => {
   //console.log(to.path.match(/.*\/index?$/i))
-  //console.log(to.fullPath)
+  //console.log(to)
   // to.path.match(/.*\/index$/i)
-  if (to.path.match(/disabled|.*\/index$/i)) { // . ->匹配任意字符 \/ ->转义 * ->全匹配 ? ->匹配字符串 $ ->结尾
+  if (to.path.match(/disabled|.*\/index$/g)) { // . ->匹配任意字符 \/ ->转义 * ->全匹配 ? ->匹配字符串 $ ->结尾
     next(false)
   } else if (to.meta.requireAuth) { // 如果访问的路由设置了 meta.requireAuth
     let token = localStorage.getItem('token')
+    if (token) {  
       console.log('全局拦截')
-      if (token) {  next() } 
-      else {
+      next() } else {
         next({
-          path: '/',
+          path: '/auth/login',
           query: {
             redirect: to.fullPath
           }

@@ -101,7 +101,7 @@
                   this.$message.error(res.message)
                 } else {
                   this.$message.success(res.message)
-                  this.$router.push('auth/login')
+                  this.$router.push('/auth/login')
                 }
               })
               .catch(err => {

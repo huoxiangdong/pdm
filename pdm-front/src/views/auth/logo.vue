@@ -6,6 +6,7 @@
 
 <style lang="stylus" scoped>
 .logo 
+  width: 50px
   margin: 50px auto
 </style>
 

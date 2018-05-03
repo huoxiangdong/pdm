@@ -92,7 +92,7 @@
             // 表单验证通过--> config:user.login --> /api/login
             this.$rest.submit.login(formData).then(res => {
                 if (res.success) {
-                  console.log(res.data)
+                  //console.log(res.data)
                   this.userLogin(res.data) // store 本地存储token
                   this.$message.success(res.message)
                   // 登录成功 跳转至首页

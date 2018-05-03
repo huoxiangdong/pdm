@@ -15,7 +15,7 @@
           el-dropdown-item 
             | <i class="iconfont icon-dengluzhanghao"></i>
             |   个人中心
-          el-dropdown-item(style="border-bottom:1px solid #000") 
+          el-dropdown-item(style="border-bottom:1px solid #eee") 
             i(class="iconfont icon-shezhi" ) 
             |   设置 
           el-dropdown-item(command="out")
