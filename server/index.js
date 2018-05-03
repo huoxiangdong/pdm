@@ -6,6 +6,7 @@ import bodyParser from 'koa-bodyparser' // body解析
 import cors from 'kcors' // 跨域
 import path from 'path' // 路径处理
 import models from './models'
+
 // Koa实例
 const app = new Koa()
 // 注册中间件

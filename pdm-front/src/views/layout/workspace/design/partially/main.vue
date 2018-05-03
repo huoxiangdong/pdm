@@ -1,13 +1,10 @@
 <template lang="pug">
-  el-card(style="margin: 10px 160px" :body-style="cardBodyStyle" )
-   div(slot="header")
-     span 半成品
-   mat-card(
-     cardStyle="margin:10px 2px"
+  div(style="margin:30px 160px")
+   x-card(
+     :cardStyle="{ margin: '10px auto' }"
      :inputGrid="inputGrid"
-    :baseData="headerData")
-   
-   x-table
+     :baseData="baseData")
+   x-table(:tableData="tableData")
    //egrid(border
          ref="egrid"
          column-type="index"
@@ -23,12 +20,13 @@
 </template>
 
 <script>
-import cardStyle from '@/views/packages/mixins/card-style.js'
-import table from '@/views/packages/mixins/table.js'
+import { mapState,mapActions } from 'vuex'
+//import cardStyle from '@/views/packages/mixins/card-style.js'
+//import table from '@/views/packages/mixins/table.js'
 import Data from './data'
 
 export default {
-  mixins: [cardStyle,table],
+  //mixins: [cardStyle,table],
   data() {
     return {
       inputGrid: {
@@ -37,33 +35,36 @@ export default {
         "grid-row-gap": "10px",
         "grid-column-gap": "30px"
       },
-      data: Data.data,
-      columns: Data.columns,
-      headerData:Data.header
+      tableData: Data.data,
+      //columns: Data.columns,
+      baseData:Data.base
     }
   },
   computed: {
-  
+     ...mapState(['multiMenuIndex'])
   },
   methods: {
+     ...mapActions(['getMultiMenuState']),
      row_click(row, event, column) {
       //  console.dir(this.data)
       //   console.dir(event.target.parentNode.parentNode.parentNode.parentNode.rowIndex)
      }
   },
   watch: {
-    /* cellMenuIndex(val,newVal) {
-      
-      if(val === 1) {
-         this.data.push(val++)
-         console.log(val)
+    multiMenuIndex(val,newVal) {
+      switch(val) {
+        case 'work1':
+       // console.log(this.$style)
+       // this.getMultiMenuState(0);
       }
-
-    } */
+    // console.log(val)
+    }
   }
 }
 </script>
 
-<style lang="stylus">
-
+<style module>
+.red {
+  color: red;
+}
 </style>

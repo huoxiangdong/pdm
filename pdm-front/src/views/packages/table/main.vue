@@ -1,19 +1,18 @@
 <template lang="pug">
 div(id="table" style="box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);")
-  multi-menu(type="table")
+  multi-menu(type="table" )
   egrid(border
         highlight-current-row
+        max-height="470"
          ref="egrid"
-         column-type="index"
-         :data="data || {}"
-         :columns="columns || {}"
-         :columns-props="columnsProps || {}"
+         :column-type="type"
+         :data="tableData"
+         :columns="columns"
+         :columns-props="columnsProps"
          @cell-dblclick="cell_dblclick"
-         @cell-click="cell_click"
          @row-contextmenu="row_contextmenu"
-         @row-click="row_click"
-         @mouseup.native="mouseup"
-         style="border-radius: 0px; "
+         @row-click="row_click"  
+         style="border-radius: 0px;"
          :header-cell-style="headerStyle"
          :cell-style="cellStyle")
   //el-button(@click="Exl(data)") 导出
@@ -21,15 +20,24 @@ div(id="table" style="box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);")
 
 <script>
 //import cardStyle from './card-style'
-import XLSX from "xlsx";
+//import XLSX from "xlsx";
 import Editor from "./cell-editor";
 import Data from "./data";
 import { mapState, mapActions } from "vuex";
 export default {
   name: "xTable",
   //mixins: [cardStyle],
+  props: {
+    tableData: {
+      type: Array,
+      default: function() {
+        return []
+      }
+    }
+  },
   data() {
     return {
+      type: "index",
       rowIndex: "",
       cellText: "",
       inputGrid: {
@@ -79,7 +87,7 @@ export default {
                   }
                 }) */
       },
-      data: Data.data,
+      //data: Data.data,
       columns: Data.columns,
       headerData: Data.header
     };
@@ -88,8 +96,9 @@ export default {
     ...mapState(["multiMenuIndex"])
   },
   methods: {
-    ...mapActions(["getMultiMenuIndex"]),
+    ...mapActions(["getMultiMenuState"]),
     row_click(row, event, column) {
+      this.rowIndex = this.tableData.indexOf(row)
       //  if(event.target.nodeName === "INPUT") {   this.rowIndex = event.target.parentNode.parentNode.parentNode.parentNode.rowIndex }
       //  else if(event.target.className === "cell") { this.rowIndex = event.target.parentNode.parentNode.rowIndex }
       //  else{ this.rowIndex = event.target.parentNode.parentNode.parentNode.rowIndex }
@@ -104,24 +113,21 @@ export default {
       event.target.readOnly = !event.target.readOnly;
       console.log(event);
     },
-    cell_click(row, column, cell, event) {
-      this.cellText = cell.childNodes[0].childNodes[0].childNodes[1];
-      //console.dir(row)
-    },
+    // cell_click(row, column, cell, event) {
+    //   this.cellText = cell.childNodes[0].childNodes[0].childNodes[1];
+    //   //console.dir(row)
+    // },
     row_contextmenu(row, event) {
       // 选中某行
-      event.preventDefault();
-      this.rowIndex = this.data.indexOf(row); // 获取行索引
+      // event.preventDefault();
+      // this.rowIndex = this.data.indexOf(row); // 获取行索引
+      // console.log(this.rowIndex)
+      // let x = event.clientX + "px";
+      // let y = event.clientY + "px";
 
-      let x = event.clientX + "px";
-      let y = event.clientY + "px";
-
-      this.$contextmenu({ x, y });
+      // this.$contextmenu({x, y},true);
     },
-    mouseup(event) {
-      localStorage.setItem("CELLTEXT", window.getSelection().toString());
-      //console.log(this.cellText)
-    }
+
     // Exl(data) {
     //   var ws = {
     //     SheetNames: ["mySheet"],
@@ -139,68 +145,52 @@ export default {
   watch: {
     multiMenuIndex(val, oldVal) {
       switch (val) {
-        case 1: // 复制
-          if (localStorage.getItem("CELLTEXT")) {
-            localStorage.setItem("COPYROW", localStorage.getItem("CELLTEXT"));
-          } else {
+        case 'table1': // 复制
             localStorage.setItem(
               "COPYROW",
-              JSON.stringify(this.data[this.rowIndex])
-            );
-          }
-
-          //  console.log(this)
-
-          //cell.childNodes[0].childNodes[0].childNodes[1].value = window.getSelection().toString()
-          // console.dir()
-          this.getMultiMenuIndex(~~0);
+              JSON.stringify(this.tableData[this.rowIndex])
+            )
+          this.getMultiMenuState(0);
           break;
-        case 2: // 粘贴
-          let COPYROW = localStorage.getItem("COPYROW");
-          var reg = /^\{/g;
-          if (reg.test(COPYROW)) {
-            this.$set(this.data, this.rowIndex, JSON.parse(COPYROW));
-            let cut = localStorage.getItem("CUT");
+        case 'table2': // 粘贴
+           let cut = localStorage.getItem("CUT");
+           let COPYROW = localStorage.getItem("COPYROW");
             if (cut) {
-              this.data.splice(cut, 1);
+              this.tableData.splice(cut, 1);
               localStorage.removeItem("CUT");
+              return false
+            }else if(COPYROW != 'undefined'){
+              
+              this.$set(this.tableData, this.rowIndex, JSON.parse(COPYROW));
             }
-            return false;
-            //localStorage.removeItem("CELLTEXT")
-          } else {
-            this.cellText.value = COPYROW;
-          }
-
-          console.log(COPYROW);
-          this.getMultiMenuIndex(~~0);
+          this.getMultiMenuState(0);
           break;
-        case 3: // 剪切
+        case 'table3': // 剪切
           localStorage.setItem(
             "COPYROW",
-            JSON.stringify(this.data[this.rowIndex])
+            JSON.stringify(this.tableData[this.rowIndex])
           );
           localStorage.setItem("CUT", this.rowIndex);
-          this.getMultiMenuIndex(~~0);
+          this.getMultiMenuState(0);
           break;
-        case 4: // 向上添加行
+        //case 4: // 向上添加行
           //this.data.push({})
           //this.$set(this.data, this.rowIndex, {})
           //console.log(this.rowIndex)
-          this.data.splice(this.rowIndex, 0, {});
+          //this.data.splice(this.rowIndex, 0, {});
           //console.log("new: %s, old: %s", val, oldVal);
-          this.getMultiMenuIndex(~~0); // 置0
-          break;
-        case 5: // 向下添加行
+          //this.getMultiMenuState(~~0); // 置0
+          //break;
+        case 'table4': // 向下添加行
           //this.data.push({})
           //this.$set(this.data, this.rowIndex, {})
           //console.log(this.rowIndex)
-          this.data.splice(this.rowIndex + 1, 0, {});
-          this.getMultiMenuIndex(~~0);
+          this.tableData.splice(this.rowIndex + 1, 0, {});
+          this.getMultiMenuState(0);
           break;
-        case 6: // 删除当前行
-          this.data.splice(this.rowIndex, 1);
-          console.log(this.data);
-          this.getMultiMenuIndex(~~0);
+        case 'table5': // 删除当前行
+          this.tableData.splice(this.rowIndex, 1);
+          this.getMultiMenuState(0);
           break;
       }
     }

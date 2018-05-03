@@ -104,7 +104,7 @@ import xFooter from './layout/footer'
 //import NavTwo from './layout/workspace/nav/nav-two.vue'
 //import NavThree from './layout/workspace/nav/nav-three.vue' // wNavMenu
 // packages
-import matCard from './packages/material-card'
+import xCard from './packages/card'
 import xTable from './packages/table'
 import multiMenu from './packages/multi-menu'
 // plugin
@@ -119,7 +119,7 @@ const components = [
   WorkSpace,
   xFooter,
   //
-  matCard,
+  xCard,
   xTable,
   multiMenu
 ];
@@ -128,7 +128,7 @@ components.map(component => {
     Vue.component(component.name, component);
   });
 
-Vue.prototype.$contextmenu = ContextMenu;
+//Vue.prototype.$contextmenu = ContextMenu;
 
 
 /* const install = function(Vue, opts = {}) {

@@ -11,10 +11,17 @@ export default {
       index: "/WorkSpace/Bom"
     },
     {
-      title: "工艺",
+      title: "工艺卡",
       index: "/WorkSpace/ProcessCard"
     },
-
+    {
+      title: "规格书",
+      index: "/WorkSpace/ProcessCard"
+    },
+    {
+      title: "公式",
+      index: "/WorkSpace/ProcessCard"
+    },
     {
       title: "设计",
       index: "/WorkSpace/Design"

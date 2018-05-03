@@ -8,6 +8,15 @@ import { User, Material, sequelize } from '../models'
 
 const router = new Router()  // 路由实例
 
+
+// url匹配models
+let model, 
+    matchVal = ['material']
+let matchModel = (url) => {
+  let matchUrl = url.match(/\w+(?!\/)$/g)
+  matchVal.find(val => (val == matchUrl) && (model = Material))
+}
+
 // 注册
 const register =async(ctx) => {
     let result = { success: false, message: '', data: null }
@@ -50,7 +59,8 @@ const login = async(ctx) => {
 const addMaterialData = async (ctx) => {
     let result = { success: false, message: '', data: null }
     let requestBody = ctx.request.body
-    await newData(Material,requestBody)
+    await matchModel(ctx.request.url)
+    await newData(model,requestBody)
                                     .then(resData => {
                                         resData.created 
                                         ?(result.success = true

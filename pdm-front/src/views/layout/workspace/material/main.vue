@@ -4,13 +4,17 @@
     v-bind="getData(value)"
     :cardNum="getCardNum(index)"
     :cardHeaderTitle="key"
-w-Card(
-    id="1"
-    :inputGrid="inputGrid_1"
-    :baseData="materialData"
-    :initInputData="initInputData"
     :inputSchema="inputSchema"
-   )
+x-card(
+        :baseData="materialData"
+        :initInputData="initInputData"
+        
+        :inputGrid=`{ 
+          display: "grid",
+          "grid-template-columns": "1fr 1fr 1fr", 
+          "grid-row-gap": "1rem",
+          "grid-column-gap": "2rem" }`)
+  
   //- w-Card(
   //-   id="2"
   //-   cardHeaderTitle="采购(或外协)参数"
@@ -57,28 +61,27 @@ w-Card(
 </template>
 
 <script>
-//import qs from "qs"
-import Vue from "vue";
+
 import { mapState, mapActions } from "vuex";
-import Data from "./material-card/data";
-import Schema from './schema'
+import Data from "./data";
+import Schema from "./schema";
 export default {
   mixins: [Schema],
   data() {
     return {
       materialData: Data.data,
       initInputData: Data.initData,
-      inputGrid_1: {
+     /*  inputGrid_1: {
         display: "grid",
         "grid-template-columns": "1fr 1fr",
         "grid-row-gap": "10px",
         "grid-column-gap": "100px"
-      }
+      } */
     };
   },
   computed: {
-    ...mapState(["navTwoIndex"]),
-   /*  materialData:function() {
+    //...mapState(["navTwoIndex"])
+    /*  materialData:function() {
       let obj = []
         Object.keys(Data).map(data => {
                Data[data].map(data => {
@@ -87,42 +90,41 @@ export default {
         })
         return obj
     } */
-     
   },
   methods: {
-     getCardNum(index) {
-       return index
-        //console.log(index)
-     },
-     getData(val) {
-       
-       console.log("val值")
-       console.log(val)
-     }
+    // getCardNum(index) {
+    //   return index;
+    //   //console.log(index)
+    // },
+    // getData(val) {
+    //   console.log("val值");
+    //   console.log(val);
+    // }
   },
-   watch: {
-    // 观察菜单状态
-    navTwoIndex: function(val, oldVal) {
-      switch (val) {
-        case 7:
-        /* let obj = {}
-        Object.keys(this.materialData).map((data,index) => {
-          //return this.materialData[data]
-          return obj[data] = this.materialData[data]
-        }) */
-       console.log(this.initInputData)
-        let obj = {}
-        for(let item in this.materialData) {
-             this.materialData[item].map(data => {
-               obj[data.key] = data.value         
-             })   
-        }
-        console.log(obj)
-          
-          break;
-      }
-    }
-  }
+  // watch: {
+  //   // 观察菜单状态
+  //   navTwoIndex: function(val, oldVal) {
+  //     switch (val) {
+  //       case 7:
+  //         /* let obj = {}
+  //       Object.keys(this.materialData).map((data,index) => {
+  //         //return this.materialData[data]
+  //         return obj[data] = this.materialData[data]
+  //       }) */
+        
+  //         let obj = {};
+  //         for (let item in this.materialData) {
+  //           this.materialData[item].map(data => {
+  //             obj[data.key] = data.value;
+  //           });
+  //         }
+  //         console.log(obj);
+  //         break;
+  //     }
+  //   }
+  // }
 };
 </script>
+
+
 

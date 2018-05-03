@@ -2,6 +2,7 @@
    el-menu(
       v-bind="menuAttrs"
        :mode="menuAttrs.mode || type==='cell'?'vertical':'horizontal'" 
+       :style="type==='table'?'border:solid 1px #e6e6e6':''"
        :default-active="activeIndex"  
        @select="selectHandler")
     el-menu-item(
@@ -10,8 +11,8 @@
         v-for="(value,index) in Data[type]"
         :key="value.id"
         :style="type==='cell'?'height: 26px;line-height: 25px;font-size: 13px;':''"
-        :class="type==='icon'?'icon':''|| type==='table'?'table':''") 
-        span(v-if="type!=='icon' && type!=='table'" v-text="value") 
+        :class="type==='work'?'work':''|| type==='table'?'table':''") 
+        span(v-if="type!=='work' && type!=='table'" v-text="value") 
         i(v-else :class="value")       
 </template>
 
@@ -56,10 +57,11 @@ export default {
     },
   },
   methods: {
-    ...mapActions(['getMultiMenuIndex']),
+    ...mapActions(['getMultiMenuState']),
     selectHandler(index, keyPath) {
-      this.getMultiMenuIndex(~~index)
+      this.getMultiMenuState(this.type + index )
       //console.log(this.multiMenuIndex)
+    
     },
   }
 };
@@ -70,13 +72,15 @@ export default {
     height: 38px;
     line-height: 38px;
     color: #303133;
-.icon
+.work
     border-bottom-color: transparent!important
 .table
-    border-bottom-color: transparent!important
+    border-bottom-color: transparent!important 
     height: 26px;
     line-height: 26px;
     color: #303133;
-.table > .iconfont
-    font-size: 13px
+/* .table > .iconfont
+    font-size: 13px */
+.el-menu--horizontal 
+    //border solid 1px #e6e6e6
 </style>

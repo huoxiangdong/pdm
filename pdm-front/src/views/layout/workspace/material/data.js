@@ -316,13 +316,13 @@ export default {
       {
           key:'MolGroCode',
           title:'模具组别代号',
-          value:'1',
+          value:'',
           isInput:true
       },
       {
           key:'MatFinClass',
           title:'物料的财务分类',//dropdownbox
-          value:'12',
+          value:'',
           isInput:true
       }
     ]

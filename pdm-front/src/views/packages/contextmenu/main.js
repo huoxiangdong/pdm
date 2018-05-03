@@ -12,13 +12,14 @@ let instances = []; // 实例栈 控制关闭
 let seed = 1; // id
 
 const ContextMenu = function(options) {
+
   
   if (Vue.prototype.$isServer) return; // 服务端渲染
   
   options = options || {};
   if (typeof options == 'object') {
     options = {
-      position: options // 传值
+      position: options, // 传值
     };
   }
   

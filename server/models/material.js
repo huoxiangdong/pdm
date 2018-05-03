@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
         MatNumber: {
             type: DataTypes.CHAR(50),
             primaryKey: true,
-            allowNull: false, //允许为 NULL
+            allowNull: false, //不允许为 NULL
             unique: false, // 约束
             validate: {
                 notEmpty: true
@@ -305,12 +305,14 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.DATE,
             get() {
                 return moment(this.getDataValue('createdAt')).format('YYYY-MM-DD HH:mm:ss');
+            
             }
         },
         LastUpdate: {
             type: DataTypes.DATE,
             get() {
                 return moment(this.getDataValue('createdAt')).format('YYYY-MM-DD HH:mm:ss');
+             
             }
         },
     },

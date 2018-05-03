@@ -30,6 +30,8 @@ export const mutations = {
     state.navIndex = index
   },
   [types.MULTIMENUINDEX](state,index) { // 获取multiMenu index
+    // type: icon0 text10 cell20 table30
+
     state.multiMenuIndex = index
   },
   [types.OBSERVERVALUES](state,value) { // 获取基础物料提交数据

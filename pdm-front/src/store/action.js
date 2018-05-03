@@ -15,7 +15,9 @@ const actions = {
 
   getNavIndex({ commit }, index) { commit(types.NAVINDEX,index) }, // 获取主菜单index
 
-  getMultiMenuIndex({ commit }, index) { commit(types.MULTIMENUINDEX, index) }, // multiMenu index
+  getMultiMenuState({ commit }, index) { 
+
+    commit(types.MULTIMENUINDEX, index) }, // multiMenu index
 
   getObserverValues({ commit }, value) { commit(types.OBSERVERVALUES, value) },
 

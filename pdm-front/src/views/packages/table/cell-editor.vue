@@ -5,7 +5,6 @@ el-input(
         type="text"
         readonly
         @blur="isReadOnly"
-       
         @keyup.enter.native="isBlur"
         v-model="row[column.property]")
 //span(

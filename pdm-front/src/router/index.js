@@ -74,7 +74,7 @@ requireAuth: true, // 添加该字段表示该路由需要登录,路由验证
       name: 'Material',
       path: 'Material',
       component: resolve =>
-        import ('@/views/layout/workspace/material/material').then(resolve)
+        import ('@/views/layout/workspace/material/main').then(resolve)
     },{
       name: 'ProcessCard',
       path: 'ProcessCard',

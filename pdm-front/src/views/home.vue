@@ -13,7 +13,7 @@
         side-bar
         //side-bar(v-on:setActiveItem="setActiveItem")
       el-main
-        multi-menu(type="icon" )
+        multi-menu(type="work" )
         //el-tag(type="success" size="small" closable) 中等标签
         router-view
         

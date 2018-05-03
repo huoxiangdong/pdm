@@ -3,8 +3,7 @@
 
 // 增
 let newData = async(model,data) => {
-    
-    const key = Object.keys(model.primaryKeys).filter(key=> key !== 'id')
+    const key = Object.keys(model.primaryKeys).filter(key=> key !== 'id')// 主键 查询条件
     return  await model.findOrCreate({
         where: { [key]: data[key] }, // 查询条件,如果存在，返回false
         defaults: data }).spread((data, created) => {

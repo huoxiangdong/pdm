@@ -2,7 +2,7 @@
   el-menu(
     :default-active="$route.path" 
     router
-    class="el-menu-demo" 
+    text-color="#595959"
     mode="horizontal"
     @select="handleSelect")
     // 1 @click.native="isCollapse=!isCollapse" 点击事件，控制sidebar
@@ -61,7 +61,6 @@ export default {
 
 <style lang="stylus" scoped>
 
-  
 </style>
 
 

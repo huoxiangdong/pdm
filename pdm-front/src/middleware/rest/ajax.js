@@ -10,7 +10,7 @@ class name {
 class ajax {
   constructor(options) {
     this.$http = axios
-    this.baseUrl = options && options.baseUrl ? options.baseUrl : ''
+    this.baseUrl = options && options.baseUrl ? options.baseUrl : '' //`baseURL` 将自动加在 `url` 前面，除非 `url` 是一个绝对 URL
     this.authUrl = options && options.authUrl ? options.authUrl : ''
     this.isLogin = false
     this.queryMap = {}
@@ -120,6 +120,7 @@ class ajax {
   //  参数: path-->路径 
   create(path, config1 = { cache: false }) {
     // createMap={}
+
     if (!this.createMap[path]) { // cache path closure
       let url = ''
       this.createMap[path] = (data, expand, config2 = {}) => {
@@ -145,7 +146,8 @@ class ajax {
         let baseUrl = config.baseUrl || this.baseUrl
         console.log(`请求的数据:`)
         console.log(`url:` + baseUrl + url + `\n`, JSON.stringify(data,null,2), JSON.stringify(config,null,2))
-        return this.$http.post(baseUrl + url, data, config).then((res) => {
+        // @param: axios.post(url, data, config)
+        return this.$http.post(baseUrl + url, data, config).then((res) => {// // 最终执行的方法
           console.log(baseUrl + url)
           console.log(`POST请求拦截响应:\n` + JSON.stringify(res.data,null,2))
           return res.data
@@ -154,7 +156,7 @@ class ajax {
         })
       }
     }
-    return this.createMap[path]
+    return this.createMap[path] // 关键是这句，返回的是什么
   }
   // 删
   delete(path, config1 = {
@@ -162,11 +164,10 @@ class ajax {
   }) {
     if (!this.deleteMap[path]) {
       let url = ''
-      this.deleteMap[path] = (data, expand, config2 = {}) => {
-        // 合并config
-        let config = Object.assign({}, config1, config2)
-        // 关闭缓存
-        if (!config.cache) {
+      this.deleteMap[path] = (data, expand, config2 = {}) => { 
+        // config2 自定义axios配置
+        let config = Object.assign({}, config1, config2) // 合并config
+        if (!config.cache) {  // 关闭缓存
           let headers = config.headers = config.headers || {}
           headers['Cache-Control'] = 'no-cahce'
           headers['If-Modified-Since'] = '0'
@@ -177,7 +178,7 @@ class ajax {
           url = path
         }
         let baseUrl = config.baseUrl || this.baseUrl
-        return this.$http.delete(baseUrl + url, data, config).then((res) => {
+        return this.$http.delete(baseUrl + url, data, config).then((res) => {// 最终执行的方法
           return res.data
         }, (res) => {
           return res

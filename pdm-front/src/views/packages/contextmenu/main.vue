@@ -6,8 +6,8 @@ transition(name="el-message-fade")
     class="contextmenu"
     v-show="visible"
     :style="{left:position.x,top:position.y}"
- 
-
+    tabindex="0"
+    v-focus="true"
     @blur="blur"
     @click="close")
     multi-menu(type="cell")
@@ -86,7 +86,7 @@ export default {
   },
 
   methods: {
-    ...mapActions(["getMultiMenuIndex"]),
+    ...mapActions(["getMultiMenuState"]),
     destroyElement() {
       // 销毁
       this.$el.removeEventListener("transitionend", this.destroyElement);
@@ -96,7 +96,7 @@ export default {
 
     close() {
       // 关闭
-      //this.closed = true;
+      this.closed = true; // 关闭标志
       // if (typeof this.onClose === 'function') { // 关闭时的回调函数
       //   this.onClose(this);
       // }
@@ -104,7 +104,7 @@ export default {
       this.$el.addEventListener("transitionend", this.destroyElement) // 销毁实例
     },
     blur(event) { // 失去焦点关闭
-        this.close()
+      if(!this.closed)  this.close() // 不加判断 Cannot read property 'removeChild' of null
         //console.dir(event)
     },
   
